@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace PharmApp
 {
@@ -23,6 +10,100 @@ namespace PharmApp
         public MainWindow()
         {
             InitializeComponent();
+            InitHeader();
+            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
         }
+
+        #region InitHeader
+
+        private void InitHeader()
+        {
+            bool restoreIfMove = false;
+
+            Header.MouseLeftButtonDown += (s, e) =>
+            {
+                if (e.ClickCount == 2)
+                {
+                    if ((ResizeMode == ResizeMode.CanResize) ||
+                        (ResizeMode == ResizeMode.CanResizeWithGrip))
+                    {
+                        SwitchState();
+                    }
+                }
+                else
+                {
+                    if (WindowState == WindowState.Maximized)
+                    {
+                        restoreIfMove = true;
+                    }
+
+                    DragMove();
+                }
+            };
+            Header.MouseLeftButtonUp += (s, e) =>
+            {
+                restoreIfMove = false;
+            };
+            Header.MouseMove += (s, e) =>
+            {
+                if (restoreIfMove)
+                {
+                    restoreIfMove = false;
+                    double mouseX = e.GetPosition(this).X;
+                    double width = RestoreBounds.Width;
+                    double x = mouseX - width / 2;
+
+                    if (x < 0)
+                    {
+                        x = 0;
+                    }
+                    else
+                    if (x + width > System.Windows.SystemParameters.WorkArea.Width)
+                    {
+                        x = System.Windows.SystemParameters.WorkArea.Width - width;
+                    }
+
+                    WindowState = WindowState.Normal;
+                    Left = x;
+                    Top = 0;
+                    DragMove();
+                }
+            };
+            Close.MouseUp += (s, e) =>
+            {
+                  Application.Current.Shutdown();
+            };
+            Restore.MouseUp += (s, e) =>
+            {
+                  SwitchState();
+            };
+            Min.MouseUp += (s, e) =>
+            {
+                WindowState = WindowState.Minimized;
+            };
+        }
+
+        private void SwitchState()
+        {
+            switch (WindowState)
+            {
+                case WindowState.Normal:
+                    {
+                        WindowState = WindowState.Maximized;
+                        break;
+                    }
+                case WindowState.Maximized:
+                    {
+                        WindowState = WindowState.Normal;
+                        break;
+                    }
+            }
+        }
+
+
+
+
+        #endregion
+
     }
 }

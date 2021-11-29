@@ -3,10 +3,76 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PharmApp"
+        xmlns:customCtl="clr-namespace:PharmApp.CustomControl"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        Height="600" Width="800"
+        Background="WhiteSmoke" Title="PharmApp">
+
     <Grid>
+        <DockPanel Name="Header" Height="25" VerticalAlignment="Top" Background="#FF1E1E1E">
+            <Label Content="PharmApp" HorizontalAlignment="Center" VerticalAlignment="Center" Height="23" FontFamily="Segoe UI Semibold" Foreground="#FFC8C8C8" FontWeight="Bold" FontSize="11"/>
+        </DockPanel>
+        <Ellipse Name="Close" Height="13" Width="13" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,6,6,0" Cursor="Hand">
+            <Ellipse.Style>
+                <Style TargetType="{x:Type Ellipse}">
+                    <Setter Property="Fill" Value="#FFDA3A3A" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Fill" Value="#FFC62626">
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Ellipse.Style>
+        </Ellipse>
+        <Ellipse Name="Restore" Height="13" Width="13" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,6,25,0" Cursor="Hand">
+            <Ellipse.Style>
+                <Style TargetType="{x:Type Ellipse}">
+                    <Setter Property="Fill" Value="#FFD6AF27" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Fill" Value="#FFC29B13">
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Ellipse.Style>
+        </Ellipse>
+        <Ellipse Name="Min" Height="13" Width="13" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,6,44,0" Cursor="Hand">
+            <Ellipse.Style>
+                <Style TargetType="{x:Type Ellipse}">
+                    <Setter Property="Fill" Value="#FF32A214" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Fill" Value="#FF1E8E00">
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Ellipse.Style>
+        </Ellipse>
+        <Grid  Margin="0,25,0,0">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Img/background.jpg" Stretch="Fill"/>
+            </Grid.Background>
+            <Menu DockPanel.Dock="Top" VerticalAlignment="Top" >
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <DockPanel HorizontalAlignment="Right"/>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+                <MenuItem Header="عملیات">
+                    <ListBoxItem Content="خروج"/>
+                </MenuItem>
+            </Menu>
+
+             <customCtl:BigButton Style="{StaticResource MenuBtnTheme}" Text="موجودی" Image="Img/stock.png" Opacity="0.95" FlowDirection="LeftToRight" Margin="250,138,400,287"/>
+
+        </Grid>
+
+       
 
     </Grid>
 </Window>

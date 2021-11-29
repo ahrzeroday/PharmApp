@@ -1,0 +1,57 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PharmApp.CustomControl">
+
+
+    <Style TargetType="{x:Type local:BigButton}" x:Key="MenuBtnTheme">
+        <Setter Property="Background" Value="FloralWhite"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Height" Value="150"/>
+        <Setter Property="Width" Value="150"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:BigButton}">
+                    <Border Name="bg" CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                           
+                            <Image Name="Btnimg" Source="{TemplateBinding Image}" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="80" Height="80"  Stretch="Fill"/>
+
+                            <TextBlock Text="{TemplateBinding Text}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bg" Property="CornerRadius"  Value="10"/>
+                            <Setter Property="Background" Value="GhostWhite"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Btnimg" Storyboard.TargetProperty="Width" To="90" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="Btnimg" Storyboard.TargetProperty="Height" To="90" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Btnimg"  Storyboard.TargetProperty="Width" To="80" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="Btnimg"  Storyboard.TargetProperty="Height" To="80" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="WhiteSmoke"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>
