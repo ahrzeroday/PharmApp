@@ -71,11 +71,11 @@ namespace PharmApp
             };
             Close.MouseUp += (s, e) =>
             {
-                  Application.Current.Shutdown();
+                Application.Current.Shutdown();
             };
             Restore.MouseUp += (s, e) =>
             {
-                  SwitchState();
+                SwitchState();
             };
             Min.MouseUp += (s, e) =>
             {
@@ -104,6 +104,11 @@ namespace PharmApp
 
 
         #endregion
-
+        private void buy_medicine_button_Clicked(object sender, RoutedEventArgs e)
+        {
+            Window1 ObjWindow1 = new Window1();
+            this.Visibility = Visibility.Visible;
+            ObjWindow1.Show();
+        }
     }
 }

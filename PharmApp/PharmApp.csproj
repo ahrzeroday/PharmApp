@@ -5,20 +5,76 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Img\logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Img\background.jpg" />
-    <None Remove="Img\stock.png" />
+    <None Remove="Img\1.png" />
+    <None Remove="Img\11.png" />
+    <None Remove="Img\12.png" />
+    <None Remove="Img\14.png" />
+    <None Remove="Img\2.png" />
+    <None Remove="Img\3.png" />
+    <None Remove="Img\4.png" />
+    <None Remove="Img\5 - Copy.png" />
+    <None Remove="Img\5.png" />
+    <None Remove="Img\6.png" />
+    <None Remove="Img\7.png" />
+    <None Remove="Img\8.png" />
+    <None Remove="Img\logo.jpg" />
+    <None Remove="Img\logo.png" />
+    <None Remove="Img\send_to_other_storage1.png" />
+    <None Remove="Img\storage - Copy.png" />
+    <None Remove="Img\Untitled-2.png" />
+    <None Remove="Img\ششی.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Img\background.jpg">
+    <Content Include="Img\background1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Img\stock.png">
+    <Content Include="Img\buy_medicine.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Img\cash_register.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Img\logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Img\Outpatient_admission.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Img\outside_sell.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Img\purchase_request.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Img\Refer_to_the_seller.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Img\send_messages.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Img\send_to_other_storage1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Img\storage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Img\Untitled-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Img\MainWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Page>
   </ItemGroup>
 
 </Project>

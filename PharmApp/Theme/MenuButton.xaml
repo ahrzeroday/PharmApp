@@ -4,19 +4,19 @@
 
 
     <Style TargetType="{x:Type local:BigButton}" x:Key="MenuBtnTheme">
-        <Setter Property="Background" Value="FloralWhite"/>
+        <Setter Property="Background" Value="#E5ECE9"/>
         <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="Height" Value="150"/>
-        <Setter Property="Width" Value="150"/>
+        <Setter Property="Height" Value="130"/>
+        <Setter Property="Width" Value="130"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:BigButton}">
-                    <Border Name="bg" CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1">
+                    <Border Name="bg" CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="#FF626161" BorderThickness="1">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                            
-                            <Image Name="Btnimg" Source="{TemplateBinding Image}" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="80" Height="80"  Stretch="Fill"/>
+                            <Image Name="Btnimg" Source="{TemplateBinding Image}" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="50" Height="50"  Stretch="Fill"/>
 
                             <TextBlock Text="{TemplateBinding Text}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </StackPanel>
@@ -24,20 +24,20 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="bg" Property="CornerRadius"  Value="10"/>
-                            <Setter Property="Background" Value="GhostWhite"/>
+                            <Setter Property="Background" Value="#BFB6B0"/>
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="Btnimg" Storyboard.TargetProperty="Width" To="90" Duration="0:0:0.1"/>
-                                        <DoubleAnimation Storyboard.TargetName="Btnimg" Storyboard.TargetProperty="Height" To="90" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="Btnimg" Storyboard.TargetProperty="Width" To="65" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="Btnimg" Storyboard.TargetProperty="Height" To="65" Duration="0:0:0.1"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="Btnimg"  Storyboard.TargetProperty="Width" To="80" Duration="0:0:0.1"/>
-                                        <DoubleAnimation Storyboard.TargetName="Btnimg"  Storyboard.TargetProperty="Height" To="80" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="Btnimg"  Storyboard.TargetProperty="Width" To="50" Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="Btnimg"  Storyboard.TargetProperty="Height" To="50" Duration="0:0:0.1"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
