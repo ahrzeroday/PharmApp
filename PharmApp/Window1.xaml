@@ -7,14 +7,15 @@
         mc:Ignorable="d"    
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
-        Height="800" Width="689" 
+        AllowsTransparency="True"
+        Height="600" Width="800" 
         Background="#FFEAF3F9" Title="buy_medicine" >
-    
+    <Window.Clip>
+        <RectangleGeometry Rect="0,0,800,600" RadiusX="50" RadiusY="50"/>
+    </Window.Clip>
     <Grid>
-        <DockPanel Name="Header" Height="25" VerticalAlignment="Top" Background="#FF1E1E1E">
-            <Label Content="خرید دارو" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" FontFamily="Segoe UI Semibold" Foreground="#FFC8C8C8" FontWeight="Bold" FontSize="11"/>
-        </DockPanel>
-        <Ellipse Name="Close" Height="13" Width="13" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,6,6,0" Cursor="Hand">
+        <Label Content="خرید دارو" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,19,0,0" FontFamily="Segoe UI Semibold" Foreground="#000000" FontWeight="Bold" FontSize="13"/>
+        <Ellipse Name="Close" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,25,0" Cursor="Hand">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="#FFDA3A3A" />
@@ -27,20 +28,7 @@
                 </Style>
             </Ellipse.Style>
         </Ellipse>
-        <Ellipse Name="Restore" Height="13" Width="13" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,6,25,0" Cursor="Hand">
-            <Ellipse.Style>
-                <Style TargetType="{x:Type Ellipse}">
-                    <Setter Property="Fill" Value="#FFD6AF27" />
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Fill" Value="#FFC29B13">
-                            </Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Ellipse.Style>
-        </Ellipse>
-        <Ellipse Name="Min" Height="13" Width="13" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,6,44,0" Cursor="Hand">
+        <Ellipse Name="Min" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,45,0" Cursor="Hand">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="#FF32A214" />
@@ -53,5 +41,37 @@
                 </Style>
             </Ellipse.Style>
         </Ellipse>
+
+        <Border Height="200" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" BorderThickness="1" BorderBrush="#FF282828" Margin="0,70,0,0" Background="WhiteSmoke"/>
+        <Label Content=" :عامل فروش" Margin="687,95,32,474"/>
+        <DataGrid Height="270" Width="750" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,25"/>
+        <Label Content=" :عامل فروش" Margin="686,131,32,438"/>
+        <Label Content=" :عامل فروش" Margin="686,167,33,402"/>
+        <Label Content=" :عامل فروش" Margin="687,95,32,474"/>
+        <Label Content=" :عامل فروش" Margin="686,131,32,438"/>
+        <Label Content=" :عامل فروش" Margin="686,167,33,402"/>
+        <Label Content=" :عامل فروش" Margin="686,203,33,366"/>
+        <Label Content=" :عامل فروش" Margin="442,95,277,474"/>
+        <Label Content=" :عامل فروش" Margin="441,131,277,438"/>
+        <Label Content=" :عامل فروش" Margin="441,167,278,402"/>
+        <Label Content=" :عامل فروش" Margin="441,203,278,366"/>
+        <TextBox Height="20" Width="150" Margin="528,100,122,480" />
+        <TextBox Height="20" Width="150" Margin="528,136,122,444" />
+        <TextBox Height="20" Width="150" Margin="528,172,122,408" />
+        <TextBox Height="20" Width="150" Margin="528,208,122,372" />
+        <TextBox Height="20" Width="150" Margin="286,100,364,480" />
+        <TextBox Height="20" Width="150" Margin="286,136,364,444" />
+        <TextBox Height="20" Width="150" Margin="286,172,364,408" />
+        <TextBox Height="20" Width="150" Margin="286,208,364,372" />
+        <Button Height="20" Width="150" Margin="61,100,589,480"/>
+        <Button Height="20" Width="150" Margin="61,125,589,455"/>
+        <Button Height="20" Width="150" Margin="61,150,589,430"/>
+        <Button Height="20" Width="150" Margin="61,175,589,405"/>
+        <Button Height="20" Width="150" Margin="61,200,589,380"/>
+        <Button Height="20" Width="150" Margin="61,225,589,355"/>
+        <Label Content=": جستجو" Margin="686,273,33,296"/>
+        <TextBox Height="20" Margin="442,278,122,302" />
+        <Label Content=": براساس" Margin="372,273,370,296"/>
+        <ComboBox Height="20" Width="150" Margin="211,278,439,302"/>
     </Grid>
 </Window>
