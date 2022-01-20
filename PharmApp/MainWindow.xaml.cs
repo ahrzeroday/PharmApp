@@ -104,11 +104,66 @@ namespace PharmApp
 
 
         #endregion
-        private void buy_medicine_button_Clicked(object sender, RoutedEventArgs e)
+        private void Buy_medicine_button_Clicked(object sender, RoutedEventArgs e)
         {
-            Window1 ObjWindow1 = new Window1();
+            Buy_medicine_page ObjWindow1 = new Buy_medicine_page();
             this.Visibility = Visibility.Visible;
             ObjWindow1.Show();
+            
+        }
+
+
+        private void Cash_register_button_Clicked(object sender, RoutedEventArgs e)
+        {
+            Cash_register_page ObjWindow2 = new Cash_register_page();
+            this.Visibility = Visibility.Visible;
+            ObjWindow2.Show();
+        }
+        private void Admission_button_Clicked(object sender, RoutedEventArgs e)
+        {
+            Admission_page ObjWindow3 = new Admission_page();
+            this.Visibility = Visibility.Visible;
+            ObjWindow3.Show();
+        }
+        private void Refer_to_the_seller_button_Clicked(object sender, RoutedEventArgs e)
+        {
+            Refer_to_the_seller_page ObjWindow4 = new Refer_to_the_seller_page();
+            this.Visibility = Visibility.Visible;
+            ObjWindow4.Show();
+        }
+
+        private void Clicked(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.WindowState = System.Windows.WindowState.Minimized;
+        }
+
+        private void Add_medicine_Clicked(object sender, RoutedEventArgs e)
+        {
+            Add_medicine_page ObjWindow5 = new Add_medicine_page();
+            this.Visibility = Visibility.Visible;
+            ObjWindow5.Show();
+        }
+
+        private void Change(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Change_page ObjWindow6 = new Change_page();
+            this.Visibility = Visibility.Visible;
+            ObjWindow6.Show();
+        }
+
+        private void Log_in_clicked(object sender, RoutedEventArgs e)
+        {
+            Log_in_page ObjWindow7 = new Log_in_page();
+            this.Visibility = Visibility.Visible;
+            ObjWindow7.Show();
+        }
+
+        private void Storage_Button_clicked(object sender, RoutedEventArgs e)
+        {
+            Storage_page ObjWindow7 = new Storage_page();
+            this.Visibility = Visibility.Visible;
+            ObjWindow7.Show();
+
         }
     }
 }

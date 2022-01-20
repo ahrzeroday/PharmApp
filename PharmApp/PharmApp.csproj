@@ -21,8 +21,10 @@
     <None Remove="Img\6.png" />
     <None Remove="Img\7.png" />
     <None Remove="Img\8.png" />
+    <None Remove="Img\Admission.png" />
     <None Remove="Img\logo.jpg" />
     <None Remove="Img\logo.png" />
+    <None Remove="Img\logout.png" />
     <None Remove="Img\send_to_other_storage1.png" />
     <None Remove="Img\storage - Copy.png" />
     <None Remove="Img\Untitled-2.png" />
@@ -30,6 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Img\Admission.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Img\background1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -42,38 +47,79 @@
     <Content Include="Img\logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Img\Outpatient_admission.png">
+    <Content Include="Img\logout.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Img\outside_sell.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    
     <Content Include="Img\purchase_request.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Img\Refer_to_the_seller.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Img\send_messages.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Img\send_to_other_storage1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Img\storage.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Img\Untitled-2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Add_medicine_page.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Change_page.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Storage_page.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Buy_medicine_page.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Refer_to_the_seller_page.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Admission_page.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Cash_register_page.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Add_medicine_page.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Change_page.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Storage_page.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Buy_medicine_page.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Refer_to_the_seller_page.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Admission_page.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Img\MainWindow.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
     <Page Update="MainWindow.xaml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Page>
+    <Page Update="Cash_register_page.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
 

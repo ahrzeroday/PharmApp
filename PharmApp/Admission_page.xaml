@@ -1,0 +1,90 @@
+﻿<Window x:Class="PharmApp.Admission_page"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:customCtl ="clr-namespace:PharmApp.CustomControl"
+        mc:Ignorable="d"    
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        AllowsTransparency="True"
+        Height="600" Width="800" 
+        Background="#FFEAF3F9" Title="Admission" >
+    <Window.Clip>
+        <RectangleGeometry Rect="0,0,800,600" RadiusX="50" RadiusY="50"/>
+    </Window.Clip>
+    <Grid>
+        <Label Content="پذیرش سرپایی" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,19,0,0" FontFamily="Segoe UI Semibold" Foreground="#000000" FontWeight="Bold" FontSize="13"/>
+        <Ellipse Name="Close" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,25,0" Cursor="Hand" MouseUp="Close_it" >
+            <Ellipse.Style>
+                <Style TargetType="{x:Type Ellipse}">
+                    <Setter Property="Fill" Value="#FFDA3A3A" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Fill" Value="#FFC62626">
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Ellipse.Style>
+        </Ellipse>
+        <Ellipse Name="Min" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,45,0" Cursor="Hand" MouseUp="Minimize">
+            <Ellipse.Style>
+                <Style TargetType="{x:Type Ellipse}">
+                    <Setter Property="Fill" Value="#FF32A214" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Fill" Value="#FF1E8E00">
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Ellipse.Style>
+        </Ellipse>
+
+        <Border Height="200" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" BorderThickness="1" BorderBrush="#FF282828" Margin="0,70,0,0" Background="WhiteSmoke">
+            <ComboBox Margin="585,17,82,0" FontFamily="Segoe UI" VerticalAlignment="Top">
+                <ComboBoxItem Content="" IsSelected="True"/>
+                <ComboBoxItem Content="آزاد" />
+                <ComboBoxItem Content="بیمه درمان"/>
+                <ComboBoxItem Content="OTC"/>
+            </ComboBox>
+
+        </Border>
+        <DataGrid Height="251" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,300,0,0"/>
+        <Label  Content=":نوع بیمار" Margin="0,86,44,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Label  Content=":نوع بیمه" Margin="0,84,202,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Label Content=":تاریخ تولد" Margin="381,126,354,444"/>
+        <Label Content=":نام بیمار" Margin="703,124,42,444"/>
+        <Label Content=":کد ملی" Margin="546,124,204,444"/>
+        <Label Content=":توضیحات" Margin="695,168,43,401"/>
+        <Label Content=":نام دارو" Margin="608,202,139,367"/>
+        <Label Content=":کد دارو" Margin="705,202,48,367"/>
+        <Label Content=":مقدار" Margin="312,202,438,367"/>
+        <Label Content="عدد" Margin="275,226,493,342"/>
+        <Label Content=":تاریخ انقضا" Margin="370,202,359,366"/>
+        <Label Content=":جمع کل" Margin="219,558,510,10"/>
+        <Label Content=":توسط برنامه محاسبه میشود" Margin="64,558,584,10"/>
+        <Label Content="خودکار" Margin="385,228,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <ComboBox Margin="288,87,256,0" FontFamily="Segoe UI" VerticalAlignment="Top">
+
+            <ComboBoxItem Content="OTC"/>
+        </ComboBox>
+        <TextBox Height="20" Margin="598,128,108,452" FlowDirection="RightToLeft" />
+        <TextBox Height="20" Margin="440,129,256,451" />
+        <TextBox Height="20" Margin="320,129,419,451"  />
+        <TextBox Height="20" Margin="288,129,484,451" />
+        <!-- مسئول تحویل  فردی است که باید  با اطلاعات خودش وارد سامانه شود-->
+        <TextBox Height="20" Margin="288,172,109,408" FlowDirection="RightToLeft"/>
+        <TextBox Height="20" Margin="684,232,48,348" />
+        <TextBox Height="20" Margin="459,232,132,348" FlowDirection="RightToLeft" />
+        <TextBox Height="20" Margin="304,232,450,348" TextAlignment="Center" />
+        <!--وقتی دکمه ثبت نهایی زده شد یک پنجره پیام برای انتقال به صندوق باز شود-->
+        <Button Content="ثبت نهایی" Margin="80,84,584,496"/>
+        <Button Content="ثبت دارو" Margin="80,115,584,465"  />
+        <Button Content="حذف دارو" Margin="80,146,584,434"  />
+        <Button Content="ویرایش" Margin="80,176,584,404" />
+        <Button Content="حذف همه" Margin="80,206,584,374" />
+        <Button Content="انصراف"   Margin="80,237,584,343" />
+    </Grid>
+</Window>

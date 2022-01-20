@@ -1,0 +1,60 @@
+﻿<Window x:Class="PharmApp.Change_page"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:customCtl ="clr-namespace:PharmApp.CustomControl"
+        mc:Ignorable="d"    
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        AllowsTransparency="True"
+        Height="298" Width="375" 
+        Background="#FFEAF3F9" Title="Change" >
+    <Window.Clip>
+        <RectangleGeometry Rect="0,0,370,300" RadiusX="30" RadiusY="30"/>
+    </Window.Clip>
+    <Grid>
+        <Label Content="OTC ویرایش حق فنی و " HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,18,0,0" FontFamily="Segoe UI Semibold" Foreground="#000000" FontWeight="Bold" FontSize="13"/>
+        <Ellipse Name="Close" Height="15" Width="14" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,34,0" Cursor="Hand" MouseUp="Close_it">
+            <Ellipse.Style>
+                <Style TargetType="{x:Type Ellipse}">
+                    <Setter Property="Fill" Value="#FFDA3A3A" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Fill" Value="#FFC62626">
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Ellipse.Style>
+        </Ellipse>
+        <Ellipse Name="Min" Height="15" Width="14" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,54,0" Cursor="Hand" MouseUp="Minimize">
+            <Ellipse.Style>
+                <Style TargetType="{x:Type Ellipse}">
+                    <Setter Property="Fill" Value="#FF32A214" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Fill" Value="#FF1E8E00">
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Ellipse.Style>
+        </Ellipse>
+
+        <Border Height="160" VerticalAlignment="Top" BorderThickness="1" BorderBrush="#FF282828" Margin="45,75,45,0" Background="WhiteSmoke" CornerRadius="2,2,2,2"/>
+        <Label Content=":کد دارو" HorizontalAlignment="Left" Margin="261,92,0,0" VerticalAlignment="Top"/>
+        <Label Content=":نام دارو" HorizontalAlignment="Left" Margin="257,0,0,0" VerticalAlignment="Center" />
+
+        <Label Content=":حق فنی" HorizontalAlignment="Left" Margin="253,187,0,0" VerticalAlignment="Top"/>
+        <Label Content=":OTC حق" Margin="132,187,177,84"/>
+
+        <TextBox Height="20" Margin="187,92,130,182" TextAlignment="Center" />
+        <TextBox Height="20" Margin="104,137,131,137" FlowDirection="RightToLeft"/>
+        <TextBox Height="20" Margin="208,192,131,86"  />
+        <TextBox Height="20" Margin="92,192,246,86" />
+
+        <Button Content="ثبت " Margin="52,255,264,20"  />
+        <Button Content="انصراف"   Margin="122,255,194,21" />
+    </Grid>
+</Window>

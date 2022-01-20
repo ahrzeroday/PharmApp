@@ -14,7 +14,7 @@
         <DockPanel Name="Header" Height="25" VerticalAlignment="Top" Background="#FF1E1E1E">
             <Label Content="PharmApp" HorizontalAlignment="Center" VerticalAlignment="Center" Height="23" FontFamily="Segoe UI Semibold" Foreground="#FFC8C8C8" FontWeight="Bold" FontSize="11"/>
         </DockPanel>
-        <Ellipse Name="Close" Height="13" Width="13" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,6,6,0" Cursor="Hand">
+        <Ellipse Name="Close" Height="13" Width="13" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,6,6,0" Cursor="Hand" >
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="#FFDA3A3A" />
@@ -40,7 +40,7 @@
                 </Style>
             </Ellipse.Style>
         </Ellipse>
-        <Ellipse Name="Min" Height="13" Width="13" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,6,44,0" Cursor="Hand">
+        <Ellipse Name="Min" Height="13" Width="13" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,6,44,0" Cursor="Hand" MouseUp="Clicked">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="#FF32A214" />
@@ -57,34 +57,33 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0*"/>
                 <ColumnDefinition Width="243*"/>
-                <ColumnDefinition Width="557*"/>
+                <ColumnDefinition Width="506*"/>
+                <ColumnDefinition Width="51*"/>
             </Grid.ColumnDefinitions>
             <Grid.Background>
                 <ImageBrush ImageSource="/Img/background1.png" Stretch="Fill"/>
             </Grid.Background>
-            <Menu VerticalAlignment="Top" Grid.ColumnSpan="3" Height="18" >
+            <Menu VerticalAlignment="Top" Grid.ColumnSpan="4" Height="18" >
                 <Menu.ItemsPanel>
                     <ItemsPanelTemplate>
                         <DockPanel HorizontalAlignment="Right"/>
                     </ItemsPanelTemplate>
                 </Menu.ItemsPanel>
                 <MenuItem Header="عملیات">
+                    <ListBoxItem Content="تغییر حق فنی" MouseUp="Change" />
                     <ListBoxItem Content="خروج"/>
                 </MenuItem>
             </Menu>
 
-            <customCtl:BigButton x:Name="buy_medicine_button" Style="{StaticResource MenuBtnTheme}" Click="buy_medicine_button_Clicked" Text ="خرید دارو" Image ="Img/buy_medicine.png" Opacity="0.95" FlowDirection="LeftToRight"   Margin="35,33,0,0" Height="130" VerticalAlignment="Top" Grid.Column="1" Width="130" HorizontalAlignment="Left"/>
-            <customCtl:BigButton Style="{StaticResource MenuBtnTheme}" Text ="نسخه نویسی" Image ="/Img/Outpatient_admission.png" Opacity="0.95" FlowDirection="LeftToRight"   Margin="170,33,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="130" Height="130"   />
-            <customCtl:BigButton Style="{StaticResource MenuBtnTheme}" Text ="صندوق" Image ="/Img/cash_register.png" Opacity="0.95" FlowDirection="LeftToRight"   Margin="35,168,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Grid.Column="1" Height="130"   />
-            <customCtl:BigButton Style="{StaticResource MenuBtnTheme}" Text ="پذیرش سرپایی" Image ="/Img/Untitled-2.png" Opacity="0.95" FlowDirection="LeftToRight"   Margin="170,168,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2" Height="130" Width="130"/>
-            <customCtl:BigButton Style="{StaticResource MenuBtnTheme}" Text ="انتقال به انبار دیگر" Image ="Img/send_to_other_storage1.png"  Opacity="0.95" FlowDirection="LeftToRight"   Margin="0,33,145,0"  HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" Height="130" Width="130"  />
-            <customCtl:BigButton Style="{StaticResource MenuBtnTheme}" Text="ارجاع به فروشنده" Image="Img/Refer_to_the_seller.png" Opacity="0.95" FlowDirection="LeftToRight" Margin="0,33,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" Height="130" Width="130"/>
-            <customCtl:BigButton Style="{StaticResource MenuBtnTheme}" Text="موجودی" Image="Img/storage.png" Opacity="0.95" FlowDirection="LeftToRight" Margin="0,168,145,0" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" Height="130" Width="130"/>
-            <customCtl:BigButton Style="{StaticResource MenuBtnTheme}" Text ="درخواست خرید" Image ="/Img/purchase_request.png" Opacity="0.95" FlowDirection="LeftToRight"   Margin="0,168,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" Height="130" Width="130"   />
-            <customCtl:BigButton Style="{StaticResource MenuBtnTheme}" Text="  فروش به &#xa;خارج از مرکز" Image ="/Img/outside_sell.png"  Opacity="0.95" FlowDirection="RightToLeft"   Margin="0,0,10,10" FontStyle="Normal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="2" Height="130" Width="130" />
-            <customCtl:BigButton Style="{StaticResource MenuBtnTheme}" Text ="ارسال پیامک" Image ="/Img/send_messages.png" Opacity="0.95" FlowDirection="LeftToRight"   Margin="35,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Height="130" Width="130"/>
+            <customCtl:BigButton x:Name="Buy_medicine_button" Style="{StaticResource MenuBtnTheme}" Click="Buy_medicine_button_Clicked" Text ="خرید دارو" Image ="Img/buy_medicine.png" Opacity="0.95" FlowDirection="LeftToRight"   Margin="92,33,0,0" Height="130" VerticalAlignment="Top" Grid.Column="2" Width="130" HorizontalAlignment="Left"/>
+            <customCtl:BigButton x:Name="Cash_register_button" Style="{StaticResource MenuBtnTheme}" Click="Cash_register_button_Clicked" Text ="صندوق" Image ="/Img/cash_register.png" Opacity="0.95" FlowDirection="LeftToRight"   Margin="35,168,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Grid.Column="1" Height="130"   />
+            <customCtl:BigButton x:Name="Admission_button" Style="{StaticResource MenuBtnTheme}" Click="Admission_button_Clicked" Text ="پذیرش " Image ="/Img/Admission.png" Opacity="0.95" FlowDirection="LeftToRight"   Margin="35,33,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Height="130" Width="130"/>
+            <customCtl:BigButton x:Name="Refer_to_the_seller_button" Style="{StaticResource MenuBtnTheme}" Click="Refer_to_the_seller_button_Clicked" Text="ارجاع به فروشنده" Image="Img/Refer_to_the_seller.png" Opacity="0.95" FlowDirection="LeftToRight" Margin="0,435,38,0" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" Height="130" Width="130" Grid.ColumnSpan="2"/>
+            <customCtl:BigButton x:Name="Storage_button" Style="{StaticResource MenuBtnTheme}" Text="موجودی" Image="Img/storage.png" Opacity="0.95" FlowDirection="LeftToRight" Margin="0,435,284,0" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" Height="130" Width="130" Click="Storage_Button_clicked"/>
+            <customCtl:BigButton x:Name="Add_medicine_button" Style="{StaticResource MenuBtnTheme}" Text ="تعریف دارو" Image ="/Img/purchase_request.png" Opacity="0.95" FlowDirection="LeftToRight"   Margin="0,33,38,0" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" Height="130" Width="130" Click="Add_medicine_Clicked" Grid.ColumnSpan="2"   />
+            <customCtl:BigButton x:Name="Logout_accaunt_button" Style="{StaticResource MenuBtnTheme}" Text ="     خروج از &#xa;حساب کاربری" Image ="/Img/logout.png" Opacity="0.95" FlowDirection="LeftToRight"   Margin="35,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Height="130" Width="130" Click="Log_in_clicked"/>
 
-        
+
 
         </Grid>
 
