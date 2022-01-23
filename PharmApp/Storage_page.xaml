@@ -9,13 +9,16 @@
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         AllowsTransparency="True"
         Height="600" Width="800" 
-        Background="#FFEAF3F9" Title="Storage" >
+        Background="#FFEAF3F9" Title="موجودی" >
     <Window.Clip>
         <RectangleGeometry Rect="0,0,800,600" RadiusX="50" RadiusY="50"/>
     </Window.Clip>
     <Grid>
-        <Label Content="موجودی" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,19,0,0" FontFamily="Segoe UI Semibold" Foreground="#000000" FontWeight="Bold" FontSize="13"/>
-        <Ellipse Name="Close" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,25,0" Cursor="Hand" MouseUp="Close_it">
+        <DockPanel Name="Header" Height="70" VerticalAlignment="Top" Background="#FFEAF3F9" Grid.ColumnSpan="2">
+            <Label Content="موجودی" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="363,19,0,0" FontFamily="Segoe UI Semibold" Foreground="#000000" FontWeight="Bold" FontSize="13"/>
+        </DockPanel>
+
+        <Ellipse Name="Close" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,25,0" Cursor="Hand">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="#FFDA3A3A" />
@@ -28,7 +31,7 @@
                 </Style>
             </Ellipse.Style>
         </Ellipse>
-        <Ellipse Name="Min" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,45,0" Cursor="Hand" MouseUp="Minimized">
+        <Ellipse Name="Min" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,45,0" Cursor="Hand">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="#FF32A214" />
@@ -44,7 +47,7 @@
 
         <Border Height="150" Width="750" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="1" BorderBrush="#FF282828" Margin="27,70,0,0" Background="WhiteSmoke">
         </Border>
-        <DataGrid Height="325" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,241,0,0"/>
+        <DataGrid Name="tempData" FlowDirection="RightToLeft" Height="325" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,241,0,0"/>
         <Label Content=":جستجو بر اساس" Margin="0,106,169,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="93"/>
         <Label Content=":ترتیب بر اساس" Margin="0,156,163,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="93"/>
         <ComboBox Margin="423,112,267,468"/>

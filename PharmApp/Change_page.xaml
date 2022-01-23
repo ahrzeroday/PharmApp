@@ -8,14 +8,17 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         AllowsTransparency="True"
-        Height="298" Width="375" 
+        Height="300" Width="370" 
         Background="#FFEAF3F9" Title="Change" >
     <Window.Clip>
         <RectangleGeometry Rect="0,0,370,300" RadiusX="30" RadiusY="30"/>
     </Window.Clip>
     <Grid>
-        <Label Content="OTC ویرایش حق فنی و " HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,18,0,0" FontFamily="Segoe UI Semibold" Foreground="#000000" FontWeight="Bold" FontSize="13"/>
-        <Ellipse Name="Close" Height="15" Width="14" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,34,0" Cursor="Hand" MouseUp="Close_it">
+        <DockPanel Name="Header" Height="70" VerticalAlignment="Top" Background="#FFEAF3F9" Grid.ColumnSpan="2">
+            <Label Content="OTC ویرایش حق فنی و " HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,18,0,0" FontFamily="Segoe UI Semibold" Foreground="#000000" FontWeight="Bold" FontSize="13"/>
+
+        </DockPanel>
+        <Ellipse Name="Close" Height="15" Width="14" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,34,0" Cursor="Hand">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="#FFDA3A3A" />
@@ -28,7 +31,7 @@
                 </Style>
             </Ellipse.Style>
         </Ellipse>
-        <Ellipse Name="Min" Height="15" Width="14" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,54,0" Cursor="Hand" MouseUp="Minimize">
+        <Ellipse Name="Min" Height="15" Width="14" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,54,0" Cursor="Hand">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="#FF32A214" />
@@ -49,12 +52,12 @@
         <Label Content=":حق فنی" HorizontalAlignment="Left" Margin="253,187,0,0" VerticalAlignment="Top"/>
         <Label Content=":OTC حق" Margin="132,187,177,84"/>
 
-        <TextBox Height="20" Margin="187,92,130,182" TextAlignment="Center" />
+        <TextBox PreviewTextInput="OnlyNumAccept" Height="20" Margin="187,92,130,182" TextAlignment="Center" />
         <TextBox Height="20" Margin="104,137,131,137" FlowDirection="RightToLeft"/>
-        <TextBox Height="20" Margin="208,192,131,86"  />
-        <TextBox Height="20" Margin="92,192,246,86" />
+        <TextBox PreviewTextInput="OnlyNumAccept" Height="20" Margin="208,192,131,86"  />
+        <TextBox PreviewTextInput="OnlyNumAccept" Height="20" Margin="92,192,246,86" />
 
         <Button Content="ثبت " Margin="52,255,264,20"  />
-        <Button Content="انصراف"   Margin="122,255,194,21" />
+        <Button Content="انصراف"   Margin="122,255,194,21" Click="Cancel_Click"/>
     </Grid>
 </Window>

@@ -14,8 +14,11 @@
         <RectangleGeometry Rect="0,0,800,600" RadiusX="50" RadiusY="50"/>
     </Window.Clip>
     <Grid>
-        <Label Content="خرید دارو" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,19,0,0" FontFamily="Segoe UI Semibold" Foreground="#000000" FontWeight="Bold" FontSize="13"/>
-        <Ellipse Name="Close" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,25,0" Cursor="Hand" MouseUp="Close_it">
+        <DockPanel Name="Header" Height="70" VerticalAlignment="Top" Background="#FFEAF3F9" Grid.ColumnSpan="2">
+            <Label Content="خرید دارو" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="363,19,0,0" FontFamily="Segoe UI Semibold" Foreground="#000000" FontWeight="Bold" FontSize="13"/>
+        </DockPanel>
+
+        <Ellipse Name="Close" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,25,0" Cursor="Hand">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="#FFDA3A3A" />
@@ -28,7 +31,7 @@
                 </Style>
             </Ellipse.Style>
         </Ellipse>
-        <Ellipse Name="Min" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,45,0" Cursor="Hand" MouseUp="Minimized">
+        <Ellipse Name="Min" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,45,0" Cursor="Hand">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="#FF32A214" />
@@ -44,43 +47,50 @@
 
         <Border Height="200" Width="750" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="1" BorderBrush="#FF282828" Margin="27,70,0,0" Background="WhiteSmoke">
         </Border>
-        <DataGrid Height="261" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,305,0,0"/>
-        <Label Content=":نام شرکت" Margin="0,80,40,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="60"/>
-        <Label Content=":زمان و شماره فاکتور" Margin="413,78,276,490"/>
-        <Label Content=":سفارش دهنده" Margin="676,115,42,454"/>
-        <Label Content=":تحویل دهنده" Margin="447,116,274,0" FontFamily="Segoe UI" VerticalAlignment="Top"/>
-        <Label Content=":توضیحات" Margin="698,151,42,416" RenderTransformOrigin="0.91,0.539"/>
+        <DataGrid Name="tempData" FlowDirection="RightToLeft" Height="261" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,305,0,0" MouseDoubleClick="tempData_MouseDoubleClick"/>
+        <Label Content=":نام شرکت" Margin="0,75,40,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="60"/>
+        <Label Content=":زمان و شماره فاکتور" Margin="413,73,276,495"/>
+        <Label Content=":سفارش دهنده" Margin="676,104,42,465"/>
+        <Label Content=":تحویل دهنده" Margin="447,105,274,0" FontFamily="Segoe UI" VerticalAlignment="Top"/>
+        <Label Content=":توضیحات" Margin="698,138,42,429" RenderTransformOrigin="0.91,0.539"/>
         <!--when user add medicine code  name of medicine must be visible in medicine name textbox-->
-        <Label Content=":کد دارو" Margin="710,189,42,380"/>
+        <Label Content=":کد دارو" Margin="710,174,42,395"/>
         <!--search must be active by every letter-->
-        <Label Content=":نام دارو" Margin="576,188,170,380"/>
-        <Label Content=":مقدار" Margin="716,228,44,346"/>
-        <Label Content="عدد" Margin="642,227,126,343"/>
-        <Label Content=":تاریخ انقضا" Margin="541,228,188,346"/>
+        <Label Content=":نام دارو" Margin="592,174,154,394"/>
+        <Label Content=":مقدار" Margin="716,239,44,335"/>
+        <Label Content="عدد" Margin="642,238,126,332"/>
+        <Label Content=":تاریخ انقضا" Margin="556,240,172,334"/>
         <Label Content=":کد سند" Margin="441,275,311,297" />
         <!--automated by app-->
-        <Label Content="توسط برنامه ثبت میشود" Margin="537,115,132,457" />
+        <Label Content="توسط برنامه ثبت میشود" Margin="537,104,132,468" />
         <Label Content="کد ساخته شده توسط برنامه برای هر لیست خرید" Margin="189,275,365,297" />
         <Label Content=":جمع کل" Margin="219,566,510,2"/>
         <Label Content=":توسط برنامه محاسبه میشود" Margin="64,566,584,2"/>
-        
-        <ComboBox Height="20" Width="150" FlowDirection="RightToLeft" Margin="537,83,113,497" IsEditable="True" >
-            <ComboBoxItem Content="" />
-        </ComboBox>    
-        
-        <TextBox Height="20" Margin="347,83,392,497"  FlowDirection="RightToLeft" />
-        <TextBox Height="20" Margin="258,83,458,497" FlowDirection="RightToLeft"  />
-        <TextBox Height="20" Margin="258,120,369,460" FlowDirection="RightToLeft" />
-        <TextBox Height="20" Margin="258,156,114,424" FlowDirection="RightToLeft" />
-        <TextBox Height="20" Margin="637,194,96,386" TextAlignment="Center" />
-        <TextBox Height="20" Margin="258,192,232,388" FlowDirection="RightToLeft" />
-        <TextBox Height="20" Margin="670,232,90,348"  TextAlignment="Center" />
-        <TextBox Height="20" Margin="471,231,261,349" FlowDirection="RightToLeft" TextAlignment="Center" />
+        <Label Content=":حق فنی" Margin="706,210,41,364"/>
+        <Label Content=": OTC حق" Margin="607,210,135,364"/>
+        <Label Content=": قیمت خرید" Margin="492,210,236,364"/>
+        <Label Content=": قیمت فروش" Margin="350,210,369,364"/>
+        <ComboBox Name="cName" Height="20" Width="150" FlowDirection="RightToLeft" Margin="537,78,113,502"/>
 
-        <Button Content="ثبت موقت" Margin="76,100,588,480"  />
-        <Button Content="ویرایش" Margin="76,130,588,450" />
-        <Button Content="ثبت نهایی" Margin="76,160,588,420"/>
-        <Button Content="حذف همه" Margin="76,190,588,390" />
-        <Button Content="انصراف"   Margin="76,220,588,360" />
+        <TextBox Name="fTime" Height="20" Margin="347,78,392,502"  FlowDirection="RightToLeft" />
+        <TextBox Name="fCode" Height="20" Margin="258,78,458,502" FlowDirection="RightToLeft"  />
+        <TextBox Name="cmName" Height="20" Margin="258,109,369,471" FlowDirection="RightToLeft" />
+        <TextBox Name="Description" Height="20" Margin="258,143,114,437" FlowDirection="RightToLeft" />
+        <TextBox Name="dCode" PreviewTextInput="OnlyNumAccept" Height="20" Margin="658,180,96,400" TextAlignment="Center" />
+        <ComboBox Name="dName" PreviewKeyUp="autodetect" IsTextSearchEnabled="False" Height="20" FlowDirection="RightToLeft"  Margin="258,178,219,402" IsEditable="True" DropDownClosed="dName_DropDownClosed"/>
+
+        <TextBox Name="Count" PreviewTextInput="OnlyNumAccept" Height="20" Margin="670,243,90,337"  TextAlignment="Center" />
+        <TextBox Name="eDate" Height="20" Margin="486,243,246,337" FlowDirection="RightToLeft"  />
+        <TextBox x:Name="hFani" PreviewTextInput="OnlyNumAccept" Height="20" Margin="678,213,96,367" FlowDirection="RightToLeft"  />
+        <TextBox x:Name="hOTC" PreviewTextInput="OnlyNumAccept" Height="20" Margin="579,213,195,367" FlowDirection="RightToLeft"  />
+        <TextBox x:Name="bPrice" PreviewTextInput="OnlyNumAccept" Height="20" Margin="428,213,308,367" FlowDirection="RightToLeft"  />
+        <TextBox x:Name="sPrice" PreviewTextInput="OnlyNumAccept" Height="20" Margin="291,213,450,367" FlowDirection="RightToLeft"  />
+
+        <Button Content="ثبت موقت" Margin="76,100,588,480" Click="AddTempData" />
+        <Button Content="ویرایش" Margin="76,130,588,450" Click="EditTempData"/>
+        <Button Content="ثبت نهایی" Margin="76,160,588,420" Click="AddTempToReal"/>
+        <Button Content="حذف همه" Margin="76,190,588,390" Click="DeleteTempdata" />
+        <Button Content="انصراف"   Margin="76,220,588,360" Click="Cancel_Click"/>
+
     </Grid>
 </Window>

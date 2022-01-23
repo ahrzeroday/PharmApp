@@ -9,13 +9,16 @@
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         AllowsTransparency="True"
         Height="600" Width="800" 
-        Background="#FFEAF3F9" Title="Refer_to_the_seller" >
+        Background="#FFEAF3F9" Title="ارجاع به فروشنده" >
     <Window.Clip>
         <RectangleGeometry Rect="0,0,800,600" RadiusX="50" RadiusY="50"/>
     </Window.Clip>
     <Grid>
-        <Label Content="ارجاع به فروشنده" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,19,0,0" FontFamily="Segoe UI Semibold" Foreground="#000000" FontWeight="Bold" FontSize="13"/>
-        <Ellipse Name="Close" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,25,0" Cursor="Hand" MouseUp="Close_it">
+        <DockPanel Name="Header" Height="70" VerticalAlignment="Top" Background="#FFEAF3F9" Grid.ColumnSpan="2">
+            <Label Content="ارجاع به فروشنده" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="363,19,0,0" FontFamily="Segoe UI Semibold" Foreground="#000000" FontWeight="Bold" FontSize="13"/>
+        </DockPanel>
+
+        <Ellipse Name="Close" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,25,0" Cursor="Hand">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="#FFDA3A3A" />
@@ -28,7 +31,7 @@
                 </Style>
             </Ellipse.Style>
         </Ellipse>
-        <Ellipse Name="Min" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,45,0" Cursor="Hand" MouseUp="Minimized">
+        <Ellipse Name="Min" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,45,0" Cursor="Hand">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="#FF32A214" />
@@ -44,7 +47,7 @@
 
         <Border Height="200" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" BorderThickness="1" BorderBrush="#FF282828" Margin="0,70,0,0" Background="WhiteSmoke">
         </Border>
-        <DataGrid Height="270" Width="750" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,25"/>
+        <DataGrid Name="tempData" FlowDirection="RightToLeft" Height="275" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,300,0,0"/>
         <Label Content=":مرجوع شود به" Margin="0,83,188,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="82"/>
         <Label Content=":تاریخ و ساعت" Margin="448,121,269,448"/>
         <Label Content=":مرجوع کننده" Margin="683,121,42,448"/>
@@ -55,7 +58,7 @@
         <!--باید این بخش با برنامه  کانکت شود-->
         <Label Content="توسط برنامه ثبت میشود" Margin="547,122,122,450" />
 
-        <TextBox Height="20" Margin="628,88,96,492" FlowDirection="RightToLeft" />
+        <TextBox PreviewTextInput="OnlyNumAccept" Height="20" Margin="628,88,96,492" FlowDirection="RightToLeft" />
         <TextBox Height="20" Margin="296,86,281,494" FlowDirection="RightToLeft" />
         <TextBox Height="20" Margin="376,126,357,454"  FlowDirection="RightToLeft" />
         <TextBox Height="20" Margin="296,126,430,454" FlowDirection="RightToLeft"  />
@@ -66,7 +69,7 @@
         <Button Content="افزودن" Margin="98,115,566,465"  />
         <Button Content="حذف " Margin="98,146,566,434"  />
         <Button Content="ویرایش" Margin="98,176,566,404" />
-        <Button Content="حذف همه" Margin="98,206,566,374" />
-        <Button Content="انصراف"   Margin="98,237,566,343" />
+        <Button Content="حذف همه" Margin="98,206,566,374" Click="DeleteTempdata"/>
+        <Button Content="انصراف"   Margin="98,237,566,343" Click="Cancel_Click"/>
     </Grid>
 </Window>
