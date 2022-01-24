@@ -44,10 +44,10 @@
         <Label Content=":کد پرسنلی" HorizontalAlignment="Left" Margin="242,100,0,0" VerticalAlignment="Top"/>
         <Label Content=":رمز عبور" HorizontalAlignment="Left" Margin="247,163,0,0" VerticalAlignment="Top" />
 
-        <TextBox Height="20" Margin="119,106,156,172" FlowDirection="RightToLeft"/>
-        <TextBox Height="20" Margin="118,166,154,112" FlowDirection="RightToLeft"/>
+        <TextBox Name="peronel_code" Height="20" Margin="119,106,156,172" FlowDirection="RightToLeft"/>
+        <TextBox Name="pass" Height="20" Margin="118,166,154,112" FlowDirection="RightToLeft"/>
 
-        <Button Content="ورود" Margin="54,238,262,37"  />
-        <Button Content="لغو" Margin="126,238,190,38" />
+        <Button Content="ورود" Margin="54,238,262,37" Click="login"  />
+        <Button Content="لغو" Margin="126,238,190,38" Click="Cancel_Click"/>
     </Grid>
 </Window>

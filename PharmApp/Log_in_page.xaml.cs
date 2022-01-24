@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Data;
+using System.Windows;
 
 namespace PharmApp
 {
@@ -21,6 +22,24 @@ namespace PharmApp
             this.WindowState = System.Windows.WindowState.Minimized;
         }
 
-       
+        private void login(object sender, RoutedEventArgs e)
+        {
+            DataTable dt = new DataTable();
+            dt = Helper.GetTable("پرسنل", "'رمزعبور','کد پرسنلی'");
+            if (dt.Rows[1]["رمزعبور"].ToString() == pass.Text)
+            {
+                /////////////////
+                MessageBox.Show("ورود موفق");
+
+            }
+        }
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult mr = MessageBox.Show("آیا میخواهید از برنامه شوید؟", "اخطار", MessageBoxButton.YesNo);
+            if (mr.HasFlag(MessageBoxResult.Yes))
+            {
+                this.Close();
+            }
+        }
     }
 }

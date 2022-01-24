@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace PharmApp
@@ -12,20 +7,13 @@ namespace PharmApp
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Change_page : Window
+    public partial class Add_personel_page : Window
     {
-        private List<string> dNamelist = new List<string>();
-        public Change_page()
+        public Add_personel_page()
         {
             InitializeComponent();
             InitHeader();
-            DataTable dt = Helper.Multiply("خرید دارو از شرکت", "دارو موجود در انبار","'کد یکتای دارو','نام دارو'", $" a.'کد دارو' == b.'کد دارو'") ;
-            for(int i =0;i<dt.Rows.Count;i++)
-            {
-                dName.Items.Add(dt.Rows[i]["کد یکتای دارو"]+"-"+dt.Rows[i]["نام دارو"]);
-            }
         }
-
 
         #region InitHeader
 
@@ -118,41 +106,7 @@ namespace PharmApp
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-        private void dName_DropDownClosed(object sender, EventArgs e)
-        {
-            try
-            {
-                DataTable dt = Helper.Multiply("خرید دارو از شرکت", "دارو موجود در انبار", "'کد یکتای دارو','حق OTC','حق فنی'", $" a.'کد دارو' == b.'کد دارو' and 'کد یکتای دارو'=={dName.Text.Split("-")[0]}") ;
-                code.Content = dt.Rows[0]["کد یکتای دارو"].ToString();
-                hfani.Text = dt.Rows[0]["حق فنی"].ToString();
-                hOTC.Text = dt.Rows[0]["حق OTC"].ToString();
-                
-            }
-            catch
-            {
 
-            }
-
-
-        }
-        private void autodetect(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                ComboBox? cmb = (ComboBox)sender;
-                cmb.IsDropDownOpen = true;
-
-                string? textbox = (cmb.Template.FindName("PART_EditableTextBox", cmb) as TextBox).Text;
-                cmb.ItemsSource = dNamelist.Where(p => string.IsNullOrEmpty(cmb.Text) || p.ToLower().Contains(textbox.ToLower())).ToList();
-
-            }
-            catch
-            {
-
-            }
-
-
-        }
         #endregion
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
@@ -162,11 +116,17 @@ namespace PharmApp
                 this.Close();
             }
         }
-        private void Hupdate(object sender, RoutedEventArgs e)
+        private void Add_personel(object sender, RoutedEventArgs e)
         {
-            //DataTable dt1 = Helper.Multiply("خرید دارو از شرکت","دارو موجود در انبار","a.'کد دارو'","a.'کد یکتای دارو'== b.'کد یکتای دارو'");
-            Helper.Update("دارو موجود در انبار", $"'حق فنی'={hfani.Text} ,'حق OTC'={hOTC.Text}", $"'کد دارو' in (select a.\"کد دارو\" from \"خرید دارو از شرکت\"as a,\"دارو موجود در انبار\"as b where a.\"کد یکتای دارو\"== {code.Content.ToString()})");
-            MessageBox.Show("تغییرات اعمال شد");
+            Helper.Insert("پرسنل", $"{peronel_code.Text},{Id.Text},'{Fullname.Text}','{nCode.Text}',{Pass.Text}");
+            MessageBox.Show("اطلاعات ذخیره شد");
+            peronel_code.Text = "";
+            Id.Text = "";
+            Fullname.Text = "";
+            nCode.Text = "";
+            Pass.Text = "";
         }
+
+        
     }
 }

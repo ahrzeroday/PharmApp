@@ -48,10 +48,9 @@
         <Border Height="150" Width="750" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="1" BorderBrush="#FF282828" Margin="27,70,0,0" Background="WhiteSmoke">
         </Border>
         <DataGrid Name="tempData" FlowDirection="RightToLeft" Height="325" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,241,0,0"/>
-        <Label Content=":جستجو بر اساس" Margin="0,106,169,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="93"/>
-        <Label Content=":ترتیب بر اساس" Margin="0,156,163,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="93"/>
-        <ComboBox Margin="423,112,267,468"/>
-        <TextBox Height="20" Margin="179,112,392,468" FlowDirection="RightToLeft" />
-        <ComboBox Margin="423,159,267,422"/>
+        <Label Content=":جستجو " Margin="0,122,169,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="51"/>
+        <Label Content=":بر اساس " Margin="0,122,476,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="61"/>
+        <ComboBox Name="SearchBy" Margin="148,128,542,452"/>
+        <TextBox Name="Search" Height="20" Margin="346,128,225,452" FlowDirection="RightToLeft"  TextChanged="Search_TextChanged" />
     </Grid>
 </Window>

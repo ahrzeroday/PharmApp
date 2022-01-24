@@ -15,11 +15,28 @@ namespace PharmApp
     /// </summary>
     public partial class Storage_page : Window
     {
+
         public Storage_page()
         {
             InitializeComponent();
             InitHeader();
             initDataTemp();
+            DataTable dt = Helper.Multiply("دارو موجود در انبار", "تاریخ انقضا داروی موجود در انبار", "*", "a.'کد دارو'==b.'کد دارو'");
+            for(int i=0;i<dt.Rows.Count;i++)
+            {
+                tempData.Items.Add(new Drag() { code=int.Parse(dt.Rows[i]["کد دارو"].ToString()),
+                Name=dt.Rows[i]["نام دارو"].ToString(),
+                Count=int.Parse(dt.Rows[i]["مقدار"].ToString()),
+                hFani=int.Parse(dt.Rows[i]["حق فنی"].ToString()),
+                hOTC=int.Parse(dt.Rows[i]["حق OTC"].ToString()),
+                bPrice=int.Parse(dt.Rows[i]["قیمت فروش"].ToString()),
+                sPrice=int.Parse(dt.Rows[i]["قیمت خرید"].ToString()),
+                eTime=DateTime.Parse(dt.Rows[i]["تاریخ انقضا"].ToString().Split(" ")[0]) });
+            }
+            foreach(DataColumn item in dt.Columns)
+            {
+                SearchBy.Items.Add(item.ColumnName);
+            }
         }
         #region InitHeader
 
@@ -105,21 +122,6 @@ namespace PharmApp
 
         #endregion
 
-        #region DataTemp
-
-        private void initDataTemp()
-        {
-            tempData.Columns.Add(new DataGridTextColumn() { Header = "کد یکتای دارو", Binding = new Binding("ocode"), IsReadOnly = true });
-            tempData.Columns.Add(new DataGridTextColumn() { Header = "کد دارو", Binding = new Binding("code"), IsReadOnly = true });
-            tempData.Columns.Add(new DataGridTextColumn() { Header = "شماره فاکتور", Binding = new Binding("fCode"), IsReadOnly = true });
-            tempData.Columns.Add(new DataGridTextColumn() { Header = "زمان ثبت خرید", Binding = new Binding("fTime"), IsReadOnly = true });
-            tempData.Columns.Add(new DataGridTextColumn() { Header = "تحویل دهنده", Binding = new Binding("cmName"), IsReadOnly = true });
-            tempData.Columns.Add(new DataGridTextColumn() { Header = "توضیحات", Binding = new Binding("Description"), IsReadOnly = true });
-        }
-
-        #endregion
-
-
         #region Rules
 
         private void OnlyNumAccept(object sender, TextCompositionEventArgs e)
@@ -134,17 +136,56 @@ namespace PharmApp
 
         public class Drag
         {
-            public int ocode { get; set; }
             public int code { get; set; }
-            public int fCode { get; set; }
-            public DateTime fTime { get; set; }
-            public string cmName { get; set; }
-            public string Description { get; set; }
+            public string Name { get; set; }
+            public int Count { get; set; }
+            public int hFani { get; set; }
+            public int hOTC { get; set; }
+            public int bPrice { get; set; }
+            public int sPrice { get; set; }
+            public DateTime eTime { get; set; }
+        }
+
+        #endregion
+        #region DataTemp
+
+        private void initDataTemp()
+        {
+            tempData.Columns.Add(new DataGridTextColumn() { Header = "کد دارو", Binding = new Binding("code"), IsReadOnly = true });
+            tempData.Columns.Add(new DataGridTextColumn() { Header = "نام دارو", Binding = new Binding("Name"), IsReadOnly = true });
+            tempData.Columns.Add(new DataGridTextColumn() { Header = "مقدار", Binding = new Binding("Count"), IsReadOnly = true });
+            tempData.Columns.Add(new DataGridTextColumn() { Header = "حق فنی", Binding = new Binding("hFani"), IsReadOnly = true });
+            tempData.Columns.Add(new DataGridTextColumn() { Header = "حق OTC", Binding = new Binding("hOTC"), IsReadOnly = true });
+            tempData.Columns.Add(new DataGridTextColumn() { Header = "قیمت فروش", Binding = new Binding("bPrice"), IsReadOnly = true });
+            tempData.Columns.Add(new DataGridTextColumn() { Header = "قیمت خرید", Binding = new Binding("sPrice"), IsReadOnly = true });
+            tempData.Columns.Add(new DataGridTextColumn() { Header = "تاریخ انقضا", Binding = new Binding("eTime"), IsReadOnly = true });
         }
 
         #endregion
 
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                
+                DataTable dt = Helper.Multiply("دارو موجود در انبار", "تاریخ انقضا داروی موجود در انبار", "*",$"a.'کد دارو'== b.'کد دارو'  and '{SearchBy.Text}' like '{Search.Text}'");
+                tempData.Items.Clear();
+                for(int i=0;i<dt.Rows.Count;i++) 
+            {
+                tempData.Items.Add(new Drag() { code=int.Parse(dt.Rows[i]["کد دارو"].ToString()),
+                Name=dt.Rows[i]["نام دارو"].ToString(),
+                Count=int.Parse(dt.Rows[i]["مقدار"].ToString()),
+                hFani=int.Parse(dt.Rows[i]["حق فنی"].ToString()),
+                hOTC=int.Parse(dt.Rows[i]["حق OTC"].ToString()),
+                bPrice=int.Parse(dt.Rows[i]["قیمت فروش"].ToString()),
+                sPrice=int.Parse(dt.Rows[i]["قیمت خرید"].ToString()),
+                eTime=DateTime.Parse(dt.Rows[i]["تاریخ انقضا"].ToString().Split(" ")[0]) });
+            }
+            }
+            catch
+            {
 
-
+            }
+        }
     }
 }

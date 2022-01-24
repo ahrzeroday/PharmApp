@@ -175,10 +175,9 @@ namespace PharmApp
 
         private void initDataTemp()
         {
-            tempData.Columns.Add(new DataGridTextColumn() {Header="کد دارو",Binding= new Binding("code"), IsReadOnly=true});
+            tempData.Columns.Add(new DataGridTextColumn() {Header="کد یکتا دارو",Binding= new Binding("code"), IsReadOnly=true});
             tempData.Columns.Add(new DataGridTextColumn() {Header="نام دارو", Binding = new Binding("Name"), IsReadOnly = true });
             tempData.Columns.Add(new DataGridTextColumn() {Header="نام شرکت", Binding = new Binding("CompanyName"), IsReadOnly = true });
-          //  tempData.Columns.Add(new DataGridTextColumn() {Header="تاریخ انقضا", Binding = new Binding("expiredate"), IsReadOnly = true });
             tempData.Columns.Add(new DataGridTextColumn() {Header="نرخ آزاد", Binding = new Binding("Amoney"), IsReadOnly = true });
         }
 
@@ -189,7 +188,7 @@ namespace PharmApp
             public int code { get; set; }
             public string Name { get; set; }
             public string CompanyName { get; set; }
-            //public DateTime expiredate { get; set; }
+            
             public int Amoney { get; set; }
         }
 

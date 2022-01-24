@@ -3,9 +3,19 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Img\logo.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>3</WarningLevel>
+    <NoWarn>1701;1702;1006;0090;0414;8632;0108</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <WarningLevel>3</WarningLevel>
+    <NoWarn>1701;1702;1006;0090;0414;8632;0108</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -66,6 +76,12 @@
     <Compile Update="Add_medicine_page.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Insurance_page.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Add_personel_page.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Change_page.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -88,6 +104,14 @@
 
   <ItemGroup>
     <Page Update="Add_medicine_page.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Insurance_page.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Add_personel_page.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>

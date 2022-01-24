@@ -27,15 +27,13 @@ namespace PharmApp
             List<string> temp = new List<string>();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                dCodelist.Add(int.Parse(dt.Rows[i]["کد یکتای دارو"].ToString()));
-                dNamelist.Add(dt.Rows[i]["کد یکتای دارو"].ToString() + "-" + dt.Rows[i]["نام دارو"].ToString());
+                
                 temp.Add(dt.Rows[i]["نام شرکت"].ToString());
 
 
             }
             cName.ItemsSource = temp;
-            dName.ItemsSource = dNamelist;
-
+          
         }
         #region InitHeader
 
@@ -131,25 +129,61 @@ namespace PharmApp
         }
         private void autodetect(object sender, KeyEventArgs e)
         {
-            ComboBox? cmb = (ComboBox)sender;
+            try{
+  ComboBox? cmb = (ComboBox)sender;
             cmb.IsDropDownOpen = true;
 
             string? textbox = (cmb.Template.FindName("PART_EditableTextBox", cmb) as TextBox).Text;
             cmb.ItemsSource = dNamelist.Where(p => string.IsNullOrEmpty(cmb.Text) || p.ToLower().Contains(textbox.ToLower())).ToList();
            
+            }
+            catch{
+
+            }
+          
         }
-        private void dName_DropDownClosed(object sender, SelectionChangedEventArgs e)
+
+        private void dName_DropDownClosed(object sender, EventArgs e)
         {
-            try
-            {
-
+            try{
                 dCode.Text = dName.Text.Split('-')[0];
+                DataTable dt = Helper.Search("داروی شرکت", "'قیمت خرید'", $"'کد یکتای دارو'='{dCode.Text}'");
+                bPrice.Content = dt.Rows[0]["قیمت خرید"].ToString();
             }
-            catch
-            {
+            catch{
 
             }
+                
+                
+            }
+            
+        private void cName_DropDownClosed(object sender, EventArgs e)
+        {
+            //DataTable dt = Helper.commandDbs("Select 'نام دارو','کد یکتای دارو' from 'داروی شرکت' ".Replace("'","\"") +
+            //    $"where 'نام شرکت' == '{cName.Text}'".Replace("'", "\""));
+            try{
+DataTable dt = Helper.Search("داروی شرکت", "'نام دارو','کد یکتای دارو'", $"'نام شرکت'=='{cName.Text}'");
+
+            dCodelist.Clear();
+            dNamelist.Clear();
+            dName.Items.Clear();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                dCodelist.Add(int.Parse(dt.Rows[i]["کد یکتای دارو"].ToString()));
+                dNamelist.Add(dt.Rows[i]["کد یکتای دارو"].ToString() + "-" + dt.Rows[i]["نام دارو"].ToString());
+                dName.Items.Add(dt.Rows[i]["کد یکتای دارو"].ToString() + "-" + dt.Rows[i]["نام دارو"].ToString());
+
+            }
+            }
+            catch{
+
+            }
+            
+           // dName.ItemsSource = dNamelist;
         }
+
+       
+
         private bool checkinput()
         {
             if (string.IsNullOrEmpty(dName.Text) && string.IsNullOrEmpty(cName.Text) && string.IsNullOrEmpty(dCode.Text) && string.IsNullOrEmpty(cmName.Text))
@@ -160,14 +194,14 @@ namespace PharmApp
             else
             {
 
-                foreach (Drag item in tempData.Items)
-                {
-                    if (item.code == int.Parse(dCode.Text))
-                    {
-                        MessageBox.Show("لطفا کد دارو را مجدد بررسی کنید");
-                        return false;
-                    }
-                }
+                //foreach (Drag item in tempData.Items)
+                //{
+                //    if (item.code == int.Parse(dCode.Text))
+                //    {
+                //        MessageBox.Show("لطفا کد دارو را مجدد بررسی کنید");
+                //        return false;
+                //    }
+                //}
 
 
 
@@ -227,7 +261,8 @@ namespace PharmApp
                 return;
             }
 
-            tempData.Items.Add(new Drag() { ocode = int.Parse(dCode.Text), code = Helper.GetNewCode(),Name=dName.Text.Split("-")[1], fCode = int.Parse(fCode.Text), fTime = DateTime.Parse(fTime.Text), cmName = cmName.Text, Description = Description.Text, count = int.Parse(Count.Text), eTime = DateTime.Parse(eDate.Text),hfani=int.Parse(hFani.Text), hotc = int.Parse(hOTC.Text),bprice=int.Parse(bPrice.Text),sprice=int.Parse(sPrice.Text) });
+            tempData.Items.Add(new Drag() { ocode = int.Parse(dCode.Text), code = Helper.GetNewCode(),Name=dName.Text.Split("-")[1], fCode = int.Parse(fCode.Text), fTime = DateTime.Parse(fTime.Text).Date, cmName = cmName.Text, Description = Description.Text, count = int.Parse(Count.Text), eTime = DateTime.Parse(eDate.Text),hfani=int.Parse(hFani.Text), hotc = int.Parse(hOTC.Text),bprice=int.Parse(bPrice.Content.ToString()),sprice=int.Parse(sPrice.Text) });
+            Total_sum();
         }
         private void EditTempData(object sender, RoutedEventArgs e)
         {
@@ -241,7 +276,8 @@ namespace PharmApp
                 Drag row = tempData.SelectedItem as Drag;
                 int index = tempData.SelectedIndex;
                 tempData.Items.RemoveAt(index);
-                tempData.Items.Insert(index, new Drag() { ocode = int.Parse(dCode.Text), code = int.Parse(row.code.ToString()), Name = dName.Text.Split("-")[1], fCode = int.Parse(fCode.Text), fTime = DateTime.Parse(fTime.Text), cmName = cmName.Text, Description = Description.Text, count = int.Parse(Count.Text), eTime = DateTime.Parse(eDate.Text), hfani = int.Parse(hFani.Text), hotc = int.Parse(hOTC.Text), bprice = int.Parse(bPrice.Text), sprice = int.Parse(sPrice.Text) });
+                tempData.Items.Insert(index, new Drag() { ocode = int.Parse(dCode.Text), code = int.Parse(row.code.ToString()), Name = dName.Text.Split("-")[1], fCode = int.Parse(fCode.Text), fTime = DateTime.Parse(fTime.Text).Date, cmName = cmName.Text, Description = Description.Text, count = int.Parse(Count.Text), eTime = DateTime.Parse(eDate.Text), hfani = int.Parse(hFani.Text), hotc = int.Parse(hOTC.Text), bprice = int.Parse(bPrice.Content.ToString()), sprice = int.Parse(sPrice.Text) });
+                Total_sum();
             }
             catch
             {
@@ -280,6 +316,7 @@ namespace PharmApp
                 Helper.Insert("دارو موجود در انبار", $"{item.code},'{item.Name}',{item.count},{item.hfani},{item.hotc},{item.sprice},{item.bprice}");
                 Helper.Insert("تاریخ انقضا داروی موجود در انبار", $"{item.code},'{item.eTime}'");
                 Helper.Insert("خرید دارو از شرکت", $"{item.ocode},{item.code},{item.fCode},'{item.fTime}','{item.cmName}','{item.Description}'");
+                //Helper.Insert("تجمیع خرید دارو", $"{item.ocode},{item.code},{کدپرسنلی}");
             }
 
 
@@ -288,6 +325,7 @@ namespace PharmApp
         {
 
             tempData.Items.Clear();
+            Totalsum.Content = "0";
 
         }
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -298,7 +336,15 @@ namespace PharmApp
                 Close();
             }
         }
-
-        
+        private void Total_sum()
+        {
+            int sum = 0;
+            foreach (Drag item in tempData.Items)
+            {
+                sum += item.bprice * item.count;
+            }
+            Totalsum.Content = sum.ToString();
+        }   
+       
     }
 }

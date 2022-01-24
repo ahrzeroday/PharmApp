@@ -49,7 +49,7 @@
         </Border>
         <DataGrid Name="tempData" FlowDirection="RightToLeft" Height="261" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,305,0,0" MouseDoubleClick="tempData_MouseDoubleClick"/>
         <Label Content=":نام شرکت" Margin="0,75,40,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="60"/>
-        <Label Content=":زمان و شماره فاکتور" Margin="413,73,276,495"/>
+        <Label Content=":تاریخ و شماره فاکتور" Margin="413,73,268,495"/>
         <Label Content=":سفارش دهنده" Margin="676,104,42,465"/>
         <Label Content=":تحویل دهنده" Margin="447,105,274,0" FontFamily="Segoe UI" VerticalAlignment="Top"/>
         <Label Content=":توضیحات" Margin="698,138,42,429" RenderTransformOrigin="0.91,0.539"/>
@@ -60,31 +60,29 @@
         <Label Content=":مقدار" Margin="716,239,44,335"/>
         <Label Content="عدد" Margin="642,238,126,332"/>
         <Label Content=":تاریخ انقضا" Margin="556,240,172,334"/>
-        <Label Content=":کد سند" Margin="441,275,311,297" />
         <!--automated by app-->
-        <Label Content="توسط برنامه ثبت میشود" Margin="537,104,132,468" />
-        <Label Content="کد ساخته شده توسط برنامه برای هر لیست خرید" Margin="189,275,365,297" />
+        <Label Name="bperson" Content="توسط برنامه ثبت میشود" Margin="537,104,132,468" />
         <Label Content=":جمع کل" Margin="219,566,510,2"/>
-        <Label Content=":توسط برنامه محاسبه میشود" Margin="64,566,584,2"/>
+        <Label Name="Totalsum" Content="-" Margin="64,566,584,2"  HorizontalContentAlignment="Center"/>
         <Label Content=":حق فنی" Margin="706,210,41,364"/>
         <Label Content=": OTC حق" Margin="607,210,135,364"/>
         <Label Content=": قیمت خرید" Margin="492,210,236,364"/>
         <Label Content=": قیمت فروش" Margin="350,210,369,364"/>
-        <ComboBox Name="cName" Height="20" Width="150" FlowDirection="RightToLeft" Margin="537,78,113,502"/>
+        <ComboBox Name="cName" Height="22" Width="150" FlowDirection="RightToLeft" Margin="537,78,113,495" DropDownClosed="cName_DropDownClosed"/>
 
         <TextBox Name="fTime" Height="20" Margin="347,78,392,502"  FlowDirection="RightToLeft" />
         <TextBox Name="fCode" Height="20" Margin="258,78,458,502" FlowDirection="RightToLeft"  />
         <TextBox Name="cmName" Height="20" Margin="258,109,369,471" FlowDirection="RightToLeft" />
         <TextBox Name="Description" Height="20" Margin="258,143,114,437" FlowDirection="RightToLeft" />
         <TextBox Name="dCode" PreviewTextInput="OnlyNumAccept" Height="20" Margin="658,180,96,400" TextAlignment="Center" />
-        <ComboBox Name="dName" PreviewKeyUp="autodetect" IsTextSearchEnabled="False" Height="20" FlowDirection="RightToLeft"  Margin="258,178,219,402" IsEditable="True" DropDownClosed="dName_DropDownClosed"/>
+        <ComboBox Name="dName" PreviewKeyUp="autodetect" IsTextSearchEnabled="False" FlowDirection="RightToLeft"  Margin="258,178,219,400" IsEditable="True" DropDownClosed="dName_DropDownClosed" Height="22" />
 
-        <TextBox Name="Count" PreviewTextInput="OnlyNumAccept" Height="20" Margin="670,243,90,337"  TextAlignment="Center" />
-        <TextBox Name="eDate" Height="20" Margin="486,243,246,337" FlowDirection="RightToLeft"  />
         <TextBox x:Name="hFani" PreviewTextInput="OnlyNumAccept" Height="20" Margin="678,213,96,367" FlowDirection="RightToLeft"  />
         <TextBox x:Name="hOTC" PreviewTextInput="OnlyNumAccept" Height="20" Margin="579,213,195,367" FlowDirection="RightToLeft"  />
-        <TextBox x:Name="bPrice" PreviewTextInput="OnlyNumAccept" Height="20" Margin="428,213,308,367" FlowDirection="RightToLeft"  />
+        <Label x:Name="bPrice" Content="-" Margin="428,210,308,365" FlowDirection="RightToLeft"  />
         <TextBox x:Name="sPrice" PreviewTextInput="OnlyNumAccept" Height="20" Margin="291,213,450,367" FlowDirection="RightToLeft"  />
+        <TextBox Name="Count" PreviewTextInput="OnlyNumAccept" Height="20" Margin="670,243,90,337"  TextAlignment="Center" />
+        <TextBox Name="eDate" Height="20" Margin="486,243,246,337" FlowDirection="RightToLeft"  />
 
         <Button Content="ثبت موقت" Margin="76,100,588,480" Click="AddTempData" />
         <Button Content="ویرایش" Margin="76,130,588,450" Click="EditTempData"/>

@@ -15,13 +15,12 @@
     </Window.Clip>
     <Grid Name="Wingrid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="131*"/>
-            <ColumnDefinition Width="29*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DockPanel Name="Header" Height="70" VerticalAlignment="Top" Background="#FFEAF3F9" Grid.ColumnSpan="2">
+        <DockPanel Name="Header" Height="70" VerticalAlignment="Top" Background="#FFEAF3F9">
             <Label Content=" تعریف دارو" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="363,19,0,0" FontFamily="Segoe UI Semibold" Foreground="#000000" FontWeight="Bold" FontSize="13"/>
         </DockPanel>
-        <Ellipse Name="Close" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,25,0" Cursor="Hand" Grid.Column="1">
+        <Ellipse Name="Close" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,25,0" Cursor="Hand">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="#FFDA3A3A" />
@@ -34,7 +33,7 @@
                 </Style>
             </Ellipse.Style>
         </Ellipse>
-        <Ellipse Name="Min" Height="15" VerticalAlignment="Top" Margin="85,25,45,0" Cursor="Hand" Grid.Column="1">
+        <Ellipse Name="Min" Height="15" VerticalAlignment="Top" Margin="740,25,45,0" Cursor="Hand">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="#FF32A214" />
@@ -48,22 +47,21 @@
             </Ellipse.Style>
         </Ellipse>
 
-        <Border Height="181" Width="750" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="1" BorderBrush="#FF282828" Margin="27,70,0,0" Background="WhiteSmoke" Grid.ColumnSpan="2">
-        </Border>
-        <DataGrid Name="tempData" Height="295" Width="750" FlowDirection="RightToLeft" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,271,0,0" Grid.ColumnSpan="2" MouseDoubleClick="tempData_MouseDoubleClick"/>
-        <Label Content=":کد دارو" Margin="0,82,28,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="62" Grid.Column="1"/>
-        <Label Content="0 به معنای ساخت اتومات کد دارو است" FlowDirection="RightToLeft" Margin="0,86,47,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="122" FontSize="7"/>
-        <Label Content=":نام دارو" Margin="51,123,34,446" Grid.Column="1"/>
-        <Label Content=":نام شرکت" Margin="40,165,45,402" RenderTransformOrigin="0.91,0.539" Grid.Column="1"/>
-        <Label Content=":نرخ آزاد" Margin="41,214,32,360" Grid.Column="1"/>
-        <TextBox Text="0" Name="dCode" TextAlignment="Center" PreviewTextInput="OnlyNumAccept" Height="20" Margin="613,85,110,495"  Grid.ColumnSpan="2" />
-        <TextBox Name="dName" Height="20" Margin="258,127,110,453" FlowDirection="RightToLeft" Grid.ColumnSpan="2" />
-        <TextBox Name="cName" Height="20" Margin="258,170,111,410" FlowDirection="RightToLeft" Grid.ColumnSpan="2" />
-        <TextBox Name="price" PreviewTextInput="OnlyNumAccept" Height="20" TextAlignment="Center" Text="0" Margin="645,217,110,363" Grid.ColumnSpan="2" />
-        <Button Content="ثبت موقت" Margin="76,100,443,480" Click="AddTempData"  />
-        <Button Content="ویرایش" Margin="76,130,443,450" Click="EditTempData" />
-        <Button Content="ثبت نهایی" Margin="76,160,443,420" Click="AddTempToReal"/>
-        <Button Content="حذف همه" Margin="76,190,443,390" Click="DeleteTempdata" />
-        <Button Content="انصراف"   Margin="76,220,443,360" Click="Cancel_Click" />
+        <Border Height="181" Width="750" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="1" BorderBrush="#FF282828" Margin="27,70,0,0" Background="WhiteSmoke"/>
+        <DataGrid Name="tempData" Height="295" Width="750" FlowDirection="RightToLeft" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,271,0,0" MouseDoubleClick="tempData_MouseDoubleClick"/>
+        <Label Content=":کد یکتا دارو" Margin="0,82,34,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="71"/>
+        <Label Content="0 به معنای ساخت اتومات کد دارو است" FlowDirection="RightToLeft" Margin="0,86,193,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="122" FontSize="7"/>
+        <Label Content=":نام دارو" Margin="715,122,25,447"/>
+        <Label Content=":نام شرکت" Margin="702,164,38,404" RenderTransformOrigin="0.91,0.539"/>
+        <Label Content=":قیمت خرید" Margin="690,211,38,363"/>
+        <TextBox Text="0" Name="dCode" TextAlignment="Center" PreviewTextInput="OnlyNumAccept" Height="20" Margin="612,85,111,495" />
+        <TextBox Name="dName" Height="20" Margin="257,127,111,453" FlowDirection="RightToLeft" />
+        <TextBox Name="cName" Height="20" Margin="257,170,112,410" FlowDirection="RightToLeft" />
+        <TextBox Name="price" PreviewTextInput="OnlyNumAccept" Height="20" TextAlignment="Center" Text="0" Margin="641,217,115,363" />
+        <Button Content="ثبت موقت" Margin="76,100,588,480" Click="AddTempData"  />
+        <Button Content="ویرایش" Margin="76,130,588,450" Click="EditTempData" />
+        <Button Content="ثبت نهایی" Margin="76,160,588,420" Click="AddTempToReal"/>
+        <Button Content="حذف همه" Margin="76,190,588,390" Click="DeleteTempdata" />
+        <Button Content="انصراف"   Margin="76,220,588,360" Click="Cancel_Click" />
     </Grid>
 </Window>

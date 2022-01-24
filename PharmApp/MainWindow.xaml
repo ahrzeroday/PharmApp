@@ -70,6 +70,8 @@
                     </ItemsPanelTemplate>
                 </Menu.ItemsPanel>
                 <MenuItem Header="عملیات">
+                    <ListBoxItem Content="تعریف پرسنل" MouseUp="Go_to_personel" />
+                    <ListBoxItem Content="تعریف شرکت بیمه" MouseUp="Go_to_insurance" />
                     <ListBoxItem Content="تغییر حق فنی" MouseUp="Change" />
                     <ListBoxItem Content="خروج"/>
                 </MenuItem>

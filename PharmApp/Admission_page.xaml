@@ -15,7 +15,7 @@
     </Window.Clip>
     <Grid>
         <DockPanel Name="Header" Height="70" VerticalAlignment="Top" Background="#FFEAF3F9" Grid.ColumnSpan="2">
-            <Label Content="پذیرش سرپایی" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="363,19,0,0" FontFamily="Segoe UI Semibold" Foreground="#000000" FontWeight="Bold" FontSize="13"/>
+            <Label Content="پذیرش " FontFamily="Segoe UI Semibold" Foreground="#000000" FontWeight="Bold" FontSize="13" DockPanel.Dock="Left" Width="54" Height="29"/>
         </DockPanel>
         <Ellipse Name="Close" Height="15" Width="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,25,0" Cursor="Hand"  >
             <Ellipse.Style>
@@ -46,8 +46,8 @@
 
         <Border Height="200" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" BorderThickness="1" BorderBrush="#FF282828" Margin="0,70,0,0" Background="WhiteSmoke">
             <ComboBox Name="Bime" Margin="585,17,82,0" FontFamily="Segoe UI" VerticalAlignment="Top" FlowDirection="RightToLeft" DropDownClosed="Bime_DropDownClosed">
-                <ComboBoxItem Content="آزاد" IsSelected="True"/>
-                <ComboBoxItem Content="بیمه درمان"/>
+                <ComboBoxItem Content="آزاد" />
+                <ComboBoxItem Content="بیمه درمان" IsSelected="True"/>
                 <ComboBoxItem Content="OTC"/>
             </ComboBox>
 
@@ -55,7 +55,7 @@
         <DataGrid Name="tempData" Height="251" Width="750" FlowDirection="RightToLeft" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,300,0,0"/>
         <Label  Content=":نوع بیمار" Margin="0,86,44,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
         <Label  Content=":نوع بیمه" Margin="0,84,202,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-        <Label Content=":تاریخ تولد" Margin="381,126,354,444"/>
+        <Label Content=":سن" Margin="381,126,384,444"/>
         <Label Content=":نام بیمار" Margin="703,124,42,444"/>
         <Label Content=":کد ملی" Margin="546,124,204,444"/>
         <Label Content=":توضیحات" Margin="695,168,43,401"/>
@@ -63,25 +63,20 @@
         <Label Content=":کد دارو" Margin="705,202,48,367"/>
         <Label Content=":مقدار" Margin="312,202,438,367"/>
         <Label Content="عدد" Margin="275,226,493,342"/>
-        <Label Content=":تاریخ انقضا" Margin="370,202,359,366"/>
-        <Label Content=":جمع کل" Margin="219,558,510,10"/>
-        <Label Content=":توسط برنامه محاسبه میشود" Margin="64,558,584,10"/>
-        <Label Name="eTime" Content="-" Margin="385,228,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
         <ComboBox Name="cName" Margin="288,87,256,0" FontFamily="Segoe UI" VerticalAlignment="Top"/>
         <TextBox Name="Name" Height="20" Margin="598,128,108,452" FlowDirection="RightToLeft" />
-        <TextBox Name="ID" PreviewTextInput="OnlyNumAccept" Height="20" Margin="440,129,256,451" />
-        <TextBox Name="bTime" Height="20" Margin="320,129,419,451"  />
-        <TextBox Height="20" Margin="288,129,484,451" />
+        <TextBox Name="ID" PreviewTextInput="OnlyNumAccept" MaxLength="10" Height="20" Margin="440,129,256,451" />
+        <TextBox Name="Age" Height="20" Margin="353,129,419,451" />
         <!-- مسئول تحویل  فردی است که باید  با اطلاعات خودش وارد سامانه شود-->
         <TextBox Name="Description" Height="20" Margin="288,172,109,408" FlowDirection="RightToLeft"/>
         <TextBox Name="dCode" PreviewTextInput="OnlyNumAccept" Height="20" Margin="684,232,48,348" />
-        <ComboBox x:Name="dName" PreviewKeyUp="autodetect" IsTextSearchEnabled="False" Height="20" FlowDirection="RightToLeft"  Margin="459,232,132,348" IsEditable="True" SelectionChanged="dName_SelectionChanged"/>
-        <TextBox Name="count" PreviewTextInput="OnlyNumAccept" Height="20" Margin="304,232,450,348" TextAlignment="Center" />
+        <ComboBox Name="dName" PreviewKeyUp="autodetect" IsTextSearchEnabled="False" DropDownClosed="dName_DropDownClosed" Height="20" FlowDirection="RightToLeft"  Margin="459,232,132,348" IsEditable="True"/>
+        <TextBox Name="Count" PreviewTextInput="OnlyNumAccept" Height="20" Margin="304,232,450,348" TextAlignment="Center" />
         <!--وقتی دکمه ثبت نهایی زده شد یک پنجره پیام برای انتقال به صندوق باز شود-->
-        <Button Content="ثبت نهایی" Margin="80,84,584,496"/>
-        <Button Content="ثبت دارو" Margin="80,115,584,465"  />
+        <Button Content="ثبت نهایی" Margin="80,84,584,496" Click="addtemptoreal"/>
+        <Button Content="ثبت دارو" Margin="80,115,584,465" Click="AddTempData" />
         <Button Content="حذف دارو" Margin="80,146,584,434"  />
-        <Button Content="ویرایش" Margin="80,176,584,404" />
+        <Button Content="ویرایش" Margin="80,176,584,404" Click="EditTempData" />
         <Button Content="حذف همه" Margin="80,206,584,374" Click="DeleteTempdata"/>
         <Button Content="انصراف"   Margin="80,237,584,343" Click="Cancel_Click"/>
     </Grid>
