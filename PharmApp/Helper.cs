@@ -17,6 +17,10 @@ namespace PharmApp
         public static List<int> alllistCode = new List<int>();
         public static List<int> alllistsCode = new List<int>();
         public static List<int> alllistCustomer = new List<int>();
+        public static List<int> alllistbuycode = new List<int>();
+
+        public static int PersonalID;
+        public static string PersonalName;
         public static DataTable commandDbs(string command)
         {
             SQLiteCommand cmd = new SQLiteCommand(command, dbs);
@@ -49,6 +53,11 @@ namespace PharmApp
             string test = $"select {column} from '{TableName1}'as a,'{TableName2}'as b where {where}".Replace("'", "\"");
             return commandDbs($"select {column} from '{TableName1}'as a,'{TableName2}'as b where {where}".Replace("'", "\""));
         }
+        public static DataTable Multiply_exc(string TableName1 ,string TableName2 ,string TableName3, string TableName4, string column1,string column2 ,string where1,string where2)
+        {
+            return commandDbs($"select {column1} from '{TableName1}'as a,'{TableName2}'as b where {where1} except select {column2} from '{TableName3}'as a,'{TableName4}'as b where {where2}".Replace("'", "\""));
+        }
+
         public static DataTable Multiply_dis(string TableName1 ,string TableName2 ,string column ,string where)
         {
             return commandDbs($"select distinct {column} from '{TableName1}'as a,'{TableName2}'as b where {where}".Replace("'", "\""));
@@ -69,6 +78,7 @@ namespace PharmApp
         {
             return commandDbs($"delete from '{TableName}' where {where}".Replace("'","\""));
         }
+
         public static int GetNewCode()
         {
             int tempnum = 1;
@@ -125,6 +135,22 @@ namespace PharmApp
                 if (!alllistCustomer.Contains(tempnum))
                 {
                     alllistCustomer.Add(tempnum);
+                    return tempnum;
+                }
+                else
+                {
+                    tempnum++;
+                }
+            }
+        }
+        public static int GetNewbuycode()
+        {
+            int tempnum = 1;
+            while (true)
+            {
+                if (!alllistbuycode.Contains(tempnum))
+                {
+                    alllistbuycode.Add(tempnum);
                     return tempnum;
                 }
                 else

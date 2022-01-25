@@ -106,6 +106,30 @@ namespace PharmApp
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+         private bool checkinput()
+        {
+            if (string.IsNullOrEmpty(peronel_code.Text) || string.IsNullOrEmpty(Id.Text) || string.IsNullOrEmpty(nCode.Text) || string.IsNullOrEmpty(Fullname.Text) || string.IsNullOrEmpty(Pass.Text))
+            {
+                MessageBox.Show("لطفا ورودی ها را بررسی کنید");
+                return false;
+            }
+            else
+            {
+
+                //foreach (Drag item in tempData.Items)
+                //{
+                //    if (item.code == int.Parse(dCode.Text))
+                //    {
+                //        MessageBox.Show("لطفا کد دارو را مجدد بررسی کنید");
+                //        return false;
+                //    }
+                //}
+
+
+
+                return true;
+            }
+        }
 
         #endregion
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -118,13 +142,21 @@ namespace PharmApp
         }
         private void Add_personel(object sender, RoutedEventArgs e)
         {
-            Helper.Insert("پرسنل", $"{peronel_code.Text},{Id.Text},'{Fullname.Text}','{nCode.Text}',{Pass.Text}");
-            MessageBox.Show("اطلاعات ذخیره شد");
-            peronel_code.Text = "";
-            Id.Text = "";
-            Fullname.Text = "";
-            nCode.Text = "";
-            Pass.Text = "";
+            try
+            {
+                Helper.Insert("پرسنل", $"{peronel_code.Text},{Id.Text},'{Fullname.Text}','{nCode.Text}',{Pass.Text}");
+                MessageBox.Show("اطلاعات ذخیره شد");
+                peronel_code.Text = "";
+                Id.Text = "";
+                Fullname.Text = "";
+                nCode.Text = "";
+                Pass.Text = "";
+            }
+            catch
+            {
+                MessageBox.Show("این کد پرسنلی در دیتابیس موجود است");
+            }
+            
         }
 
         

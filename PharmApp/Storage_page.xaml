@@ -50,7 +50,7 @@
         <DataGrid Name="tempData" FlowDirection="RightToLeft" Height="325" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,241,0,0"/>
         <Label Content=":جستجو " Margin="0,122,169,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="51"/>
         <Label Content=":بر اساس " Margin="0,122,476,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="61"/>
-        <ComboBox Name="SearchBy" Margin="148,128,542,452"/>
+        <ComboBox Name="SearchBy" Margin="148,126,542,449" FlowDirection="RightToLeft"/>
         <TextBox Name="Search" Height="20" Margin="346,128,225,452" FlowDirection="RightToLeft"  TextChanged="Search_TextChanged" />
     </Grid>
 </Window>

@@ -58,10 +58,11 @@
         <TextBox Name="dName" Height="20" Margin="257,127,111,453" FlowDirection="RightToLeft" />
         <TextBox Name="cName" Height="20" Margin="257,170,112,410" FlowDirection="RightToLeft" />
         <TextBox Name="price" PreviewTextInput="OnlyNumAccept" Height="20" TextAlignment="Center" Text="0" Margin="641,217,115,363" />
-        <Button Content="ثبت موقت" Margin="76,100,588,480" Click="AddTempData"  />
-        <Button Content="ویرایش" Margin="76,130,588,450" Click="EditTempData" />
-        <Button Content="ثبت نهایی" Margin="76,160,588,420" Click="AddTempToReal"/>
-        <Button Content="حذف همه" Margin="76,190,588,390" Click="DeleteTempdata" />
-        <Button Content="انصراف"   Margin="76,220,588,360" Click="Cancel_Click" />
+        <Button Content="ثبت موقت" Margin="76,81,588,499" Click="AddTempData"  />
+        <Button Content="ویرایش" Margin="76,110,588,470" Click="EditTempData" />
+        <Button Name ="Add" Content="ثبت نهایی" Margin="76,138,588,442" Click="AddTempToReal"/>
+        <Button Content="حذف همه" Margin="76,193,588,387" Click="DeleteTempdata" />
+        <Button Content="انصراف"   Margin="76,221,588,359" Click="Cancel_Click" />
+        <Button Content="حذف" Margin="76,166,588,414" Click="DeleteOneTempdata" />
     </Grid>
 </Window>

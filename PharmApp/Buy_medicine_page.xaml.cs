@@ -22,7 +22,7 @@ namespace PharmApp
             InitializeComponent();
             InitHeader();
             initDataTemp();
-
+            Add.IsEnabled = false;
             DataTable dt = Helper.GetTable("داروی شرکت", "'کد یکتای دارو','نام دارو','نام شرکت'");
             List<string> temp = new List<string>();
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -32,8 +32,8 @@ namespace PharmApp
 
 
             }
-            cName.ItemsSource = temp;
-          
+            cName.ItemsSource = temp.Distinct().ToList();
+            bperson.Content = Helper.PersonalName;
         }
         #region InitHeader
 
@@ -186,7 +186,7 @@ DataTable dt = Helper.Search("داروی شرکت", "'نام دارو','کد ی�
 
         private bool checkinput()
         {
-            if (string.IsNullOrEmpty(dName.Text) && string.IsNullOrEmpty(cName.Text) && string.IsNullOrEmpty(dCode.Text) && string.IsNullOrEmpty(cmName.Text))
+            if (string.IsNullOrEmpty(fTime.Text) || string.IsNullOrEmpty(fCode.Text) || string.IsNullOrEmpty(cmName.Text) || string.IsNullOrEmpty( dCode.Text) || string.IsNullOrEmpty( dName.Text)|| string.IsNullOrEmpty( hFani.Text)|| string.IsNullOrEmpty( hOTC.Text)|| string.IsNullOrEmpty( sPrice.Text)|| string.IsNullOrEmpty( Count.Text)|| string.IsNullOrEmpty( eDate.Text))
             {
                 MessageBox.Show("لطفا ورودی ها را بررسی کنید");
                 return false;
@@ -219,11 +219,11 @@ DataTable dt = Helper.Search("داروی شرکت", "'نام دارو','کد ی�
             public int code { get; set; }
             public string Name { get; set; }
             public int fCode { get; set; }
-            public DateTime fTime { get; set; }
+            public string fTime { get; set; }
             public string cmName { get; set; }
             public string Description { get; set; }
             public int count { get; set; }
-            public DateTime eTime { get; set; }
+            public string eTime { get; set; }
             public int hfani { get; set; }
             public int hotc { get; set; }
             public int bprice { get; set; }
@@ -260,8 +260,28 @@ DataTable dt = Helper.Search("داروی شرکت", "'نام دارو','کد ی�
             {
                 return;
             }
-
-            tempData.Items.Add(new Drag() { ocode = int.Parse(dCode.Text), code = Helper.GetNewCode(),Name=dName.Text.Split("-")[1], fCode = int.Parse(fCode.Text), fTime = DateTime.Parse(fTime.Text).Date, cmName = cmName.Text, Description = Description.Text, count = int.Parse(Count.Text), eTime = DateTime.Parse(eDate.Text),hfani=int.Parse(hFani.Text), hotc = int.Parse(hOTC.Text),bprice=int.Parse(bPrice.Content.ToString()),sprice=int.Parse(sPrice.Text) });
+            if(DateTime.Parse(fTime.Text).Date>= DateTime.Parse(eDate.Text).Date)
+            {
+                MessageBox.Show("دارو قابل فروش نیست!");
+                return;
+            }
+            
+            
+            for(int i = 0; i<tempData.Items.Count;i++)
+            {
+                Drag d = (Drag)tempData.Items[i];
+                if (d.ocode == int.Parse(dCode.Text))
+                {
+                    MessageBox.Show("این دارو در لیست موجود است لطفا از ویرایش استفاده کنید");
+                    return;
+                }
+            }
+            cName.IsEnabled = false;
+            fTime.IsEnabled = false;
+            fCode.IsEnabled = false;
+            cmName.IsEnabled = false;
+            Add.IsEnabled = true;
+            tempData.Items.Add(new Drag() { ocode = int.Parse(dCode.Text), code = Helper.GetNewCode(),Name=dName.Text.Split("-")[1], fCode = int.Parse(fCode.Text), fTime = DateTime.Parse(fTime.Text).Date.ToString("yyyy-MM-dd"), cmName = cmName.Text, Description = Description.Text, count = int.Parse(Count.Text), eTime = DateTime.Parse(eDate.Text).Date.ToString("yyyy-MM-dd"), hfani=int.Parse(hFani.Text), hotc = int.Parse(hOTC.Text),bprice=int.Parse(bPrice.Content.ToString()),sprice=int.Parse(sPrice.Text) });
             Total_sum();
         }
         private void EditTempData(object sender, RoutedEventArgs e)
@@ -276,7 +296,7 @@ DataTable dt = Helper.Search("داروی شرکت", "'نام دارو','کد ی�
                 Drag row = tempData.SelectedItem as Drag;
                 int index = tempData.SelectedIndex;
                 tempData.Items.RemoveAt(index);
-                tempData.Items.Insert(index, new Drag() { ocode = int.Parse(dCode.Text), code = int.Parse(row.code.ToString()), Name = dName.Text.Split("-")[1], fCode = int.Parse(fCode.Text), fTime = DateTime.Parse(fTime.Text).Date, cmName = cmName.Text, Description = Description.Text, count = int.Parse(Count.Text), eTime = DateTime.Parse(eDate.Text), hfani = int.Parse(hFani.Text), hotc = int.Parse(hOTC.Text), bprice = int.Parse(bPrice.Content.ToString()), sprice = int.Parse(sPrice.Text) });
+                tempData.Items.Insert(index, new Drag() { ocode = int.Parse(dCode.Text), code = int.Parse(row.code.ToString()), Name = dName.Text.Split("-")[1], fCode = int.Parse(fCode.Text), fTime = DateTime.Parse(fTime.Text).Date.ToString("yyyy-MM-dd"), cmName = cmName.Text, Description = Description.Text, count = int.Parse(Count.Text), eTime = DateTime.Parse(eDate.Text).Date.ToString("yyyy-MM-dd"), hfani = int.Parse(hFani.Text), hotc = int.Parse(hOTC.Text), bprice = int.Parse(bPrice.Content.ToString()), sprice = int.Parse(sPrice.Text) });
                 Total_sum();
             }
             catch
@@ -316,16 +336,67 @@ DataTable dt = Helper.Search("داروی شرکت", "'نام دارو','کد ی�
                 Helper.Insert("دارو موجود در انبار", $"{item.code},'{item.Name}',{item.count},{item.hfani},{item.hotc},{item.sprice},{item.bprice}");
                 Helper.Insert("تاریخ انقضا داروی موجود در انبار", $"{item.code},'{item.eTime}'");
                 Helper.Insert("خرید دارو از شرکت", $"{item.ocode},{item.code},{item.fCode},'{item.fTime}','{item.cmName}','{item.Description}'");
-                //Helper.Insert("تجمیع خرید دارو", $"{item.ocode},{item.code},{کدپرسنلی}");
+                Helper.Insert("تجمیع خرید دارو", $"{item.ocode},{item.code},{Helper.PersonalID}");
             }
 
-
+            MessageBox.Show("اطلاعات ذخیره شد");
+            tempData.Items.Clear();
+            fTime.Text="";
+            fCode.Text="";
+            cmName.Text="";
+            Totalsum.Content="-";
+            cName.IsEnabled = true;
+            fTime.IsEnabled = true;
+            fCode.IsEnabled = true;
+            cmName.IsEnabled = true;
+            Add.IsEnabled = false;
+            Description.Text = "";
+            dName.Text = "";
+            dCode.Text = "";
+            bPrice.Content = "";
+            sPrice.Text = "";
+            Count.Text = "";
+            eDate.Text = "";
+            hFani.Text = "";
+            hOTC.Text = "";
         }
         private void DeleteTempdata(object sender, RoutedEventArgs e)
         {
-
+            cName.IsEnabled = true;
+            fTime.IsEnabled = true;
+            fCode.IsEnabled = true;
+            cmName.IsEnabled = true;
+            Add.IsEnabled = false;
             tempData.Items.Clear();
-            Totalsum.Content = "0";
+            Totalsum.Content = "-";
+            fTime.Text="";
+            fCode.Text="";
+            cmName.Text="";
+            Total_sum();
+
+        }
+        private void DeleteOneTempdata(object sender, RoutedEventArgs e)
+        {
+           
+            try
+            {
+                int index = tempData.SelectedIndex;
+                tempData.Items.RemoveAt(index);
+                Total_sum();
+                if (tempData.Items.Count == 0)
+                {
+                    cName.IsEnabled = true;
+                    fTime.IsEnabled = true;
+                    fCode.IsEnabled = true;
+                    cmName.IsEnabled = true;
+                    Add.IsEnabled = false;
+
+                }
+            }
+            catch
+            {
+                MessageBox.Show("لطفا یک دارو از لیست انتخاب کنید");
+            }
 
         }
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -338,12 +409,20 @@ DataTable dt = Helper.Search("داروی شرکت", "'نام دارو','کد ی�
         }
         private void Total_sum()
         {
-            int sum = 0;
-            foreach (Drag item in tempData.Items)
+            try
             {
-                sum += item.bprice * item.count;
+                int sum = 0;
+                foreach (Drag item in tempData.Items)
+                {
+                    sum += item.bprice * item.count;
+                }
+                Totalsum.Content = sum.ToString();
             }
-            Totalsum.Content = sum.ToString();
+            catch
+            {
+
+            }
+         
         }   
        
     }

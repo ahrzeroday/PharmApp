@@ -46,26 +46,28 @@
 
         <Border Height="94" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" BorderThickness="1" BorderBrush="#FF282828" Margin="0,75,0,0" Background="WhiteSmoke">
         </Border>
-        <DataGrid Name="tempData" FlowDirection="RightToLeft" Height="301" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,188,0,0"/>
+        <DataGrid Name="tempData" FlowDirection="RightToLeft" Height="288" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,188,0,0"/>
         <Label Content=":کد مشتری" Margin="0,85,47,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-        <Label Content=":حق فنی" Margin="709,523,33,46"/>
-        <Label Content=":OTC حق " Margin="708,546,34,23"/>
-        <Label Content=":مبلغ قابل پرداخت" Margin="665,499,38,70"/>
+        <Label Content=":حق فنی" Margin="709,500,33,69"/>
+        <Label Content=":OTC حق " Margin="708,523,34,46"/>
+        <Label Content=":مبلغ قابل پرداخت" Margin="665,476,38,93"/>
         <Label Content=":جمع کل" Margin="543,544,203,25"/>
-        <Label Content=":نوع بیمار" Margin="536,84,199,485"/>
-        <Label Content=":نوع بیمه" Margin="360,84,375,486"/>
+        <Label Content=":نوع بیمار" Margin="493,84,242,485"/>
+        <Label Content=":نوع بیمه" Margin="317,84,418,486"/>
         <Label Content=":نام " Margin="722,130,52,439"/>
-        <Label Content=":کد ملی " Margin="541,128,205,441"/>
-        <Label Content="--" Margin="504,85,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FlowDirection="RightToLeft"/>
-        <Label Content="--" Margin="504,131,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FlowDirection="RightToLeft"/>
-        <Label Content="--" Margin="335,85,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FlowDirection="RightToLeft"/>
-        <Label Content="--" Margin="683,131,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FlowDirection="RightToLeft"/>
-        <TextBox PreviewTextInput="OnlyNumAccept" Height="20" Margin="614,88,128,492"  TextAlignment="Center"/>
-        <Label Content="0" Margin="643,499,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FlowDirection="RightToLeft"/>
-        <Label Content="0" Margin="686,524,98,50" FlowDirection="RightToLeft"/>
-        <Label Content="0" Margin="685,545,99,29" FlowDirection="RightToLeft"/>
-        <Label Content="0" Margin="524,545,260,29" FlowDirection="RightToLeft"/>
+        <Label Content=":کد ملی " Margin="498,128,248,441"/>
+        <Label Name="nBime" VerticalContentAlignment="Center" Content="--" Margin="428,85,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FlowDirection="LeftToRight"/>
+        <Label Name="ID" VerticalContentAlignment="Center" Content="--" Margin="428,131,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FlowDirection="LeftToRight"/>
+        <Label Name="cName" VerticalContentAlignment="Center" Content="--" Margin="250,85,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FlowDirection="LeftToRight"/>
+        <Label Name="Name" VerticalContentAlignment="Center" Content="--" Margin="632,130,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FlowDirection="LeftToRight"/>
+        <TextBox Name="customerNum" Height="20" Margin="614,88,128,492"  TextAlignment="Center" TextChanged="customerNum_TextChanged"/>
+        <Label Name="Sum" HorizontalContentAlignment="Center" Content="0" Margin="524,476,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FlowDirection="RightToLeft" Width="103"/>
+        <Label Name="hFani" Content="0" HorizontalContentAlignment="Center" Margin="599,501,115,73" FlowDirection="RightToLeft"/>
+        <Label Name="hOTC" Content="0" HorizontalContentAlignment="Center" Margin="599,522,116,52" FlowDirection="RightToLeft"/>
+        <Label Name="TotalSum" HorizontalContentAlignment="Center" Content="0" Margin="413,545,270,29" FlowDirection="RightToLeft"/>
         <Button Content="انصراف"   Margin="197,541,493,39" Click="Cancel_Click"/>
-        <Button Content="پرداخت"   Margin="49,541,641,39" />
+        <Button Content="پرداخت"   Margin="49,541,641,39"  Click="BuyComplete"/>
+        <Label Content=": تخفیف بیمه" Margin="691,547,34,22"/>
+        <Label Name="OFF" HorizontalContentAlignment="Center" Content="0" Margin="600,547,112,27" FlowDirection="RightToLeft"/>
     </Grid>
 </Window>

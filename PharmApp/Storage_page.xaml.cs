@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,18 +20,21 @@ namespace PharmApp
             InitHeader();
             initDataTemp();
             DataTable dt = Helper.Multiply("دارو موجود در انبار", "تاریخ انقضا داروی موجود در انبار", "*", "a.'کد دارو'==b.'کد دارو'");
-            for(int i=0;i<dt.Rows.Count;i++)
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
-                tempData.Items.Add(new Drag() { code=int.Parse(dt.Rows[i]["کد دارو"].ToString()),
-                Name=dt.Rows[i]["نام دارو"].ToString(),
-                Count=int.Parse(dt.Rows[i]["مقدار"].ToString()),
-                hFani=int.Parse(dt.Rows[i]["حق فنی"].ToString()),
-                hOTC=int.Parse(dt.Rows[i]["حق OTC"].ToString()),
-                bPrice=int.Parse(dt.Rows[i]["قیمت فروش"].ToString()),
-                sPrice=int.Parse(dt.Rows[i]["قیمت خرید"].ToString()),
-                eTime=DateTime.Parse(dt.Rows[i]["تاریخ انقضا"].ToString().Split(" ")[0]) });
+                tempData.Items.Add(new Drag()
+                {
+                    code = int.Parse(dt.Rows[i]["کد دارو"].ToString()),
+                    Name = dt.Rows[i]["نام دارو"].ToString(),
+                    Count = int.Parse(dt.Rows[i]["مقدار"].ToString()),
+                    hFani = int.Parse(dt.Rows[i]["حق فنی"].ToString()),
+                    hOTC = int.Parse(dt.Rows[i]["حق OTC"].ToString()),
+                    bPrice = int.Parse(dt.Rows[i]["قیمت فروش"].ToString()),
+                    sPrice = int.Parse(dt.Rows[i]["قیمت خرید"].ToString()),
+                    eTime = DateTime.Parse(dt.Rows[i]["تاریخ انقضا"].ToString()).Date.ToString("yyyy-MM-dd")
+                });
             }
-            foreach(DataColumn item in dt.Columns)
+            foreach (DataColumn item in dt.Columns)
             {
                 SearchBy.Items.Add(item.ColumnName);
             }
@@ -95,7 +96,7 @@ namespace PharmApp
             };
             Close.MouseUp += (s, e) =>
             {
-                this.Close();
+                Close();
             };
             Min.MouseUp += (s, e) =>
             {
@@ -143,7 +144,7 @@ namespace PharmApp
             public int hOTC { get; set; }
             public int bPrice { get; set; }
             public int sPrice { get; set; }
-            public DateTime eTime { get; set; }
+            public string eTime { get; set; }
         }
 
         #endregion
@@ -167,20 +168,31 @@ namespace PharmApp
         {
             try
             {
+                DataTable dt = new DataTable();
+                try
+                {
+                     dt = Helper.Multiply("دارو موجود در انبار", "تاریخ انقضا داروی موجود در انبار", "*", $"a.'کد دارو'== b.'کد دارو'  and a.'{SearchBy.Text}' like '%{Search.Text}%'");
+                }
+                catch
+                {
+                     dt = Helper.Multiply("دارو موجود در انبار", "تاریخ انقضا داروی موجود در انبار", "*", $"a.'کد دارو'== b.'کد دارو'  and b.'{SearchBy.Text}' like '%{Search.Text}%'");
+                }
                 
-                DataTable dt = Helper.Multiply("دارو موجود در انبار", "تاریخ انقضا داروی موجود در انبار", "*",$"a.'کد دارو'== b.'کد دارو'  and '{SearchBy.Text}' like '{Search.Text}'");
                 tempData.Items.Clear();
-                for(int i=0;i<dt.Rows.Count;i++) 
-            {
-                tempData.Items.Add(new Drag() { code=int.Parse(dt.Rows[i]["کد دارو"].ToString()),
-                Name=dt.Rows[i]["نام دارو"].ToString(),
-                Count=int.Parse(dt.Rows[i]["مقدار"].ToString()),
-                hFani=int.Parse(dt.Rows[i]["حق فنی"].ToString()),
-                hOTC=int.Parse(dt.Rows[i]["حق OTC"].ToString()),
-                bPrice=int.Parse(dt.Rows[i]["قیمت فروش"].ToString()),
-                sPrice=int.Parse(dt.Rows[i]["قیمت خرید"].ToString()),
-                eTime=DateTime.Parse(dt.Rows[i]["تاریخ انقضا"].ToString().Split(" ")[0]) });
-            }
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    tempData.Items.Add(new Drag()
+                    {
+                        code = int.Parse(dt.Rows[i]["کد دارو"].ToString()),
+                        Name = dt.Rows[i]["نام دارو"].ToString(),
+                        Count = int.Parse(dt.Rows[i]["مقدار"].ToString()),
+                        hFani = int.Parse(dt.Rows[i]["حق فنی"].ToString()),
+                        hOTC = int.Parse(dt.Rows[i]["حق OTC"].ToString()),
+                        bPrice = int.Parse(dt.Rows[i]["قیمت فروش"].ToString()),
+                        sPrice = int.Parse(dt.Rows[i]["قیمت خرید"].ToString()),
+                        eTime = DateTime.Parse(dt.Rows[i]["تاریخ انقضا"].ToString()).Date.ToString("yyyy-MM-dd")
+                    });
+                }
             }
             catch
             {

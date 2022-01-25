@@ -153,6 +153,30 @@ namespace PharmApp
 
 
         }
+         private bool checkinput()
+        {
+            if (string.IsNullOrEmpty(dName .Text) || string.IsNullOrEmpty(hfani.Text) || string.IsNullOrEmpty(hOTC .Text))
+            {
+                MessageBox.Show("لطفا ورودی ها را بررسی کنید");
+                return false;
+            }
+            else
+            {
+
+                //foreach (Drag item in tempData.Items)
+                //{
+                //    if (item.code == int.Parse(dCode.Text))
+                //    {
+                //        MessageBox.Show("لطفا کد دارو را مجدد بررسی کنید");
+                //        return false;
+                //    }
+                //}
+
+
+
+                return true;
+            }
+        }
         #endregion
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {

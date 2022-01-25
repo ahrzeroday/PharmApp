@@ -24,7 +24,8 @@ namespace PharmApp
         #region InitHeader
 
         private void InitHeader()
-        {
+        {   
+            Add.IsEnabled=false;
             bool restoreIfMove = false;
 
             Header.MouseLeftButtonDown += (s, e) =>
@@ -115,7 +116,7 @@ namespace PharmApp
         }
         private int dragcode()
         {
-            if (dCode.Text.Contains("0"))
+            if (dCode.Text=="0")
             {
                 
                 while (true)
@@ -146,7 +147,7 @@ namespace PharmApp
             {
                 if (!edit)
                 {
-                    if (dCode.Text.Contains("0"))
+                    if (dCode.Text == "0")
                     {
                         return true;
                     }
@@ -198,9 +199,25 @@ namespace PharmApp
             {
                 return;
             }
+
+
+            for(int i = 0; i<tempData.Items.Count;i++)
+            {
+                Drag d = (Drag)tempData.Items[i];
+                if (d.code == int.Parse(dCode.Text))
+                {
+                    MessageBox.Show("این دارو در لیست موجود است لطفا از ویرایش استفاده کنید");
+                    return;
+                }
+            }
+            Add.IsEnabled = true;
             int newcode = dragcode();
             allcode.Add(newcode);
             tempData.Items.Add(new Drag() { Name=dName.Text,code= newcode, CompanyName= cName.Text, Amoney= int.Parse( price.Text) });
+            dName.Text = "";
+            dCode.Text = "0";
+            cName.Text = "";
+            price.Text = "";
         }
         private void EditTempData(object sender, RoutedEventArgs e)
         {
@@ -214,6 +231,10 @@ namespace PharmApp
                 int index = tempData.SelectedIndex;
                 tempData.Items.RemoveAt(index);
                 tempData.Items.Insert(index, new Drag() { Name = dName.Text, code = dragcode(), CompanyName = cName.Text, Amoney = int.Parse(price.Text) });
+                dName.Text = "";
+                dCode.Text = "0";
+                cName.Text = "";
+                price.Text = "";
             }
             catch
             {
@@ -227,14 +248,44 @@ namespace PharmApp
             {
                 Helper.Insert("داروی شرکت", $"{item.code},'{item.Name}','{item.CompanyName}',{item.Amoney}");
             }
-            
-           
+            tempData.Items.Clear();
+            MessageBox.Show("اطلاعات ذخیره شد");
+            tempData.Items.Clear();
+            cName.Text="";
+            dName.Text="";
+            dCode.Text="0";
+            price.Text="";
+            Add.IsEnabled = false;
         }   
         private void DeleteTempdata(object sender, RoutedEventArgs e)
         {
 
             tempData.Items.Clear();
-           
+            cName.Text = "";
+            dName.Text = "";
+            dCode.Text = "0";
+            price.Text = "";
+            Add.IsEnabled = false;
+        }
+        private void DeleteOneTempdata(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                
+                int index = tempData.SelectedIndex;
+                tempData.Items.RemoveAt(index);
+
+                if (tempData.Items.Count > 0)
+                {
+                  
+                    Add.IsEnabled = false;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("لطفا آیتم مورد نظر جهت حذف را از جدول زیر انتخاب کنید");
+            }
+            
         }
 
         private void tempData_MouseDoubleClick(object sender, MouseButtonEventArgs e)

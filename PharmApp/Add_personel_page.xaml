@@ -54,7 +54,7 @@
         <Label Content=":رمز عبور" Margin="282,189,27,82"/>
 
         <TextBox Name="peronel_code" PreviewTextInput="OnlyNumAccept" Height="20" Margin="221,80,96,200" TextAlignment="Center" RenderTransformOrigin="0.854,0.438" />
-        <TextBox Name="Id" PreviewTextInput="OnlyNumAccept" Height="20" Margin="73,80,235,200" TextAlignment="Center" RenderTransformOrigin="0.854,0.438" />
+        <TextBox Name="Id" MaxLength="10" PreviewTextInput="OnlyNumAccept" Height="20" Margin="61,80,235,200" TextAlignment="Center" RenderTransformOrigin="0.854,0.438" />
         <TextBox Name="nCode"  Height="20" Margin="196,118,119,162"  />
         <TextBox Name="Fullname" Height="20" Margin="61,157,134,123" FlowDirection="RightToLeft"/>
         <TextBox Name="Pass" Height="20" Margin="210,194,90,86" />

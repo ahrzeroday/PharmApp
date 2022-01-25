@@ -47,7 +47,7 @@
 
         <Border Height="200" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" BorderThickness="1" BorderBrush="#FF282828" Margin="0,70,0,0" Background="WhiteSmoke">
         </Border>
-        <DataGrid Name="tempData" FlowDirection="RightToLeft" Height="275" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,300,0,0"/>
+        <DataGrid Name="tempData" FlowDirection="RightToLeft" Height="275" Width="750" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,300,0,0" MouseDoubleClick="tempData_MouseDoubleClick"/>
         <Label Content=":مرجوع شود به" Margin="0,83,222,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="82"/>
         <Label Content=":تاریخ مرجوعی" Margin="448,121,269,448"/>
         <Label Content=":مرجوع کننده" Margin="683,121,42,448"/>
@@ -56,18 +56,18 @@
         <!--بررسی شود-->
         <Label Content =":نام دارو" Margin="707,161,39,407"/>
         <!--باید این بخش با برنامه  کانکت شود-->
-        <Label Content="توسط برنامه ثبت میشود" Margin="547,122,122,450" />
+        <Label Name="pName" Content="توسط برنامه ثبت میشود" Margin="547,122,122,450" />
 
         <TextBox Name="fCode" PreviewTextInput="OnlyNumAccept" Height="20" Margin="597,88,127,492" FlowDirection="RightToLeft" TextChanged="fCode_TextChanged" />
         <Label Name="sendback" Content="-" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Margin="296,83,316,492" FlowDirection="RightToLeft" />
         <TextBox Name="date_sendback" Height="20" Margin="369,126,357,454" FlowDirection="RightToLeft"  />
-        <ComboBox Name="dName" Margin="296,167,104,414" FlowDirection="RightToLeft" IsEditable="True" PreviewKeyUp="autodetect"/>
+        <ComboBox Name="dName" Height="25" Margin="296,167,104,414" FlowDirection="RightToLeft" IsEditable="True" PreviewKeyUp="autodetect"/>
         <TextBox Name="Description" Margin="296,204,127,343" FlowDirection="RightToLeft" />
 
-        <Button Content="ثبت نهایی" Margin="98,84,566,496" Click="AddTempToReal"/>
+        <Button Name="Add" Content="ثبت نهایی" Margin="98,84,566,496" Click="AddTempToReal"/>
         <Button Content="افزودن" Margin="98,115,566,465" Click="AddTempData" />
         <Button Content="حذف " Margin="98,146,566,434" Click="Delete_onetemp" />
-        <Button Content="ویرایش" Margin="98,176,566,404" />
+        <Button Content="ویرایش" Margin="98,176,566,404" Click="EditTempData"/>
         <Button Content="حذف همه" Margin="98,206,566,374" Click="DeleteTempdata"/>
         <Button Content="انصراف"   Margin="98,237,566,343" Click="Cancel_Click"/>
     </Grid>

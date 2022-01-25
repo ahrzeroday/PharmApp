@@ -70,25 +70,26 @@
         <Label Content=": قیمت فروش" Margin="350,210,369,364"/>
         <ComboBox Name="cName" Height="22" Width="150" FlowDirection="RightToLeft" Margin="537,78,113,495" DropDownClosed="cName_DropDownClosed"/>
 
-        <TextBox Name="fTime" Height="20" Margin="347,78,392,502"  FlowDirection="RightToLeft" />
-        <TextBox Name="fCode" Height="20" Margin="258,78,458,502" FlowDirection="RightToLeft"  />
-        <TextBox Name="cmName" Height="20" Margin="258,109,369,471" FlowDirection="RightToLeft" />
-        <TextBox Name="Description" Height="20" Margin="258,143,114,437" FlowDirection="RightToLeft" />
+        <TextBox Name="fTime" Height="20" Margin="334,78,392,502"  FlowDirection="RightToLeft" />
+        <TextBox Name="fCode" Height="20" Margin="247,78,469,502" FlowDirection="RightToLeft"  />
+        <TextBox Name="cmName" Height="20" Margin="246,109,369,471" FlowDirection="RightToLeft" />
+        <TextBox Name="Description" Height="20" Margin="246,143,114,437" FlowDirection="RightToLeft" />
         <TextBox Name="dCode" PreviewTextInput="OnlyNumAccept" Height="20" Margin="658,180,96,400" TextAlignment="Center" />
-        <ComboBox Name="dName" PreviewKeyUp="autodetect" IsTextSearchEnabled="False" FlowDirection="RightToLeft"  Margin="258,178,219,400" IsEditable="True" DropDownClosed="dName_DropDownClosed" Height="22" />
+        <ComboBox Name="dName" PreviewKeyUp="autodetect" IsTextSearchEnabled="False" FlowDirection="RightToLeft"  Margin="246,178,219,400" IsEditable="True" DropDownClosed="dName_DropDownClosed" Height="22" />
 
         <TextBox x:Name="hFani" PreviewTextInput="OnlyNumAccept" Height="20" Margin="678,213,96,367" FlowDirection="RightToLeft"  />
         <TextBox x:Name="hOTC" PreviewTextInput="OnlyNumAccept" Height="20" Margin="579,213,195,367" FlowDirection="RightToLeft"  />
         <Label x:Name="bPrice" Content="-" Margin="428,210,308,365" FlowDirection="RightToLeft"  />
         <TextBox x:Name="sPrice" PreviewTextInput="OnlyNumAccept" Height="20" Margin="291,213,450,367" FlowDirection="RightToLeft"  />
         <TextBox Name="Count" PreviewTextInput="OnlyNumAccept" Height="20" Margin="670,243,90,337"  TextAlignment="Center" />
-        <TextBox Name="eDate" Height="20" Margin="486,243,246,337" FlowDirection="RightToLeft"  />
+        <TextBox Name="eDate" Height="20" Margin="474,243,246,337" FlowDirection="RightToLeft"  />
 
-        <Button Content="ثبت موقت" Margin="76,100,588,480" Click="AddTempData" />
-        <Button Content="ویرایش" Margin="76,130,588,450" Click="EditTempData"/>
-        <Button Content="ثبت نهایی" Margin="76,160,588,420" Click="AddTempToReal"/>
-        <Button Content="حذف همه" Margin="76,190,588,390" Click="DeleteTempdata" />
-        <Button Content="انصراف"   Margin="76,220,588,360" Click="Cancel_Click"/>
+        <Button Content="ثبت موقت" Margin="76,87,588,493" Click="AddTempData" />
+        <Button Content="ویرایش" Margin="76,117,588,463" Click="EditTempData"/>
+        <Button Name="Add" Content="ثبت نهایی" Margin="76,147,588,433" Click="AddTempToReal"/>
+        <Button Content="حذف همه" Margin="76,203,588,377" Click="DeleteTempdata" />
+        <Button Content="انصراف"   Margin="76,231,588,349" Click="Cancel_Click"/>
+        <Button Content="حذف" Margin="76,176,588,404" Click="DeleteOneTempdata" />
 
     </Grid>
 </Window>

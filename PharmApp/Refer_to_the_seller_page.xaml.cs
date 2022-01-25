@@ -25,16 +25,18 @@ namespace PharmApp
             initDataTemp();
             dt = Helper.GetTable("ارجاع دارو به شرکت", "'شماره ارجاع'");
             Helper.alllistsCode.Clear();
-            foreach(DataRow dr in dt.Rows)
+            foreach (DataRow dr in dt.Rows)
             {
                 Helper.alllistsCode.Add(int.Parse(dr["شماره ارجاع"].ToString()));
             }
-
+            pName.Content = Helper.PersonalName;
+           
         }
         #region InitHeader
 
         private void InitHeader()
         {
+            Add.IsEnabled = false;
             bool restoreIfMove = false;
 
             Header.MouseLeftButtonDown += (s, e) =>
@@ -120,7 +122,9 @@ namespace PharmApp
         private void initDataTemp()
         {
             tempData.Columns.Add(new DataGridTextColumn() { Header = "کد یکتای دارو", Binding = new Binding("dCode"), IsReadOnly = true });
+            tempData.Columns.Add(new DataGridTextColumn() { Header = "شماره فاکتور", Binding = new Binding("fCode"), IsReadOnly = true });
             tempData.Columns.Add(new DataGridTextColumn() { Header = "کد دارو", Binding = new Binding("code"), IsReadOnly = true });
+            tempData.Columns.Add(new DataGridTextColumn() { Header = "نام دارو", Binding = new Binding("dName"), IsReadOnly = true });
             tempData.Columns.Add(new DataGridTextColumn() { Header = "شماره ارجاع", Binding = new Binding("sCode"), IsReadOnly = true });
             tempData.Columns.Add(new DataGridTextColumn() { Header = "زمان ثبت خرید", Binding = new Binding("date_sendback"), IsReadOnly = true });
             tempData.Columns.Add(new DataGridTextColumn() { Header = "توضیحات", Binding = new Binding("Description"), IsReadOnly = true });
@@ -131,27 +135,7 @@ namespace PharmApp
 
         #region Rules
 
-        private void AddTempData(object sender, RoutedEventArgs e)
-        {
-            if (!checkinput())
-            {
-                return;
-            }
-            dt = Helper.Multiply("دارو موجود در انبار", "خرید دارو از شرکت","'کد یکتای دارو',a.'کد دارو'", $"'شماره فاکتور' == {fCode.Text} and a.'کد دارو' == b.'کد دارو' and b.'کد یکتای دارو' == {dName.Text.Split("-")[0]}");
-            tempData.Items.Add(new Drag() { sCode = Helper.GetNewsCode(), dCode =int.Parse( dt.Rows[0]["کد دارو"].ToString()) ,code =int.Parse( dt.Rows[0]["کد دارو"].ToString()), date_sendback = DateTime.Parse(date_sendback.Text).Date, Description = Description.Text});
-        }
-        private void AddTempToReal(object sender, RoutedEventArgs e)
-        {
-            foreach (Drag item in tempData.Items)
-            {
-                Helper.Insert("ارجاع دارو به شرکت", $"{item.dCode},{item.code},{item.sCode},'{item.date_sendback}','{item.Description}'");
-                Helper.DeleteT("دارو موجود در انبار", $"'کد دارو'=={item.code}");
-                Helper.DeleteT("تاریخ انقضا داروی موجود در انبار", $"'کد دارو'=={item.code}"); 
-
-            }
-            MessageBox.Show("اطلاعات ذخیره شد");
-
-        }
+       
         private void OnlyNumAccept(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
@@ -172,12 +156,12 @@ namespace PharmApp
             {
 
             }
-        
+
 
         }
         private bool checkinput()
         {
-            if (string.IsNullOrEmpty(dName.Text) &&  string.IsNullOrEmpty(fCode.Text) )
+            if (string.IsNullOrEmpty(fCode .Text) || string.IsNullOrEmpty(date_sendback.Text) && string.IsNullOrEmpty(dName .Text))
             {
                 MessageBox.Show("لطفا ورودی ها را بررسی کنید");
                 return false;
@@ -206,9 +190,11 @@ namespace PharmApp
         public class Drag
         {
             public int dCode { get; set; }
+            public int fCode { get; set; }
+            public string dName { get; set; }
             public int code { get; set; }
             public int sCode { get; set; }
-            public DateTime date_sendback { get; set; }
+            public string date_sendback { get; set; }
             public string Description { get; set; }
         }
 
@@ -216,23 +202,111 @@ namespace PharmApp
 
         private void DeleteTempdata(object sender, RoutedEventArgs e)
         {
-
+            fCode.IsEnabled = true;
+            Add.IsEnabled = false;
             tempData.Items.Clear();
 
         }
         private void Delete_onetemp(object sender, RoutedEventArgs e)
         {
-
+            
             try
             {
                 int index = tempData.SelectedIndex;
                 tempData.Items.RemoveAt(index);
+                if (tempData.Items.Count == 0)
+                {
+                    fCode.IsEnabled = true;
+                    Add.IsEnabled = false;
+                }
             }
             catch
             {
+                MessageBox.Show("لطفا یک دارو از لیست انتخاب کنید");
+            }
+            
 
+        }
+        private void AddTempData(object sender, RoutedEventArgs e)
+        {
+            if (!checkinput())
+            {
+                return;
+            }
+            
+            dt = Helper.Multiply("دارو موجود در انبار", "خرید دارو از شرکت", "'کد یکتای دارو',a.'کد دارو',a.'نام دارو'", $"'شماره فاکتور' == {fCode.Text} and a.'کد دارو' == b.'کد دارو' and b.'کد یکتای دارو' == {dName.Text.Split("-")[0]}");
+            for (int i = 0; i < tempData.Items.Count; i++)
+            {
+                Drag d = (Drag)tempData.Items[i];
+                if (d.dCode == int.Parse(dt.Rows[0]["کد یکتای دارو"].ToString()))
+                {
+                    MessageBox.Show("این دارو در لیست موجود است لطفا از ویرایش استفاده کنید");
+                    return;
+                }
+            }
+            tempData.Items.Add(new Drag() { sCode = Helper.GetNewsCode(), dCode = int.Parse(dt.Rows[0]["کد یکتای دارو"].ToString()), code = int.Parse(dt.Rows[0]["کد دارو"].ToString()), dName = dt.Rows[0]["نام دارو"].ToString(), fCode=int.Parse(fCode.Text), date_sendback = DateTime.Parse(date_sendback.Text).Date.ToString("yyyy-MM-dd"), Description = Description.Text });
+            Add.IsEnabled=true ;
+        }
+        private void EditTempData(object sender, RoutedEventArgs e)
+        {   
+            if (tempData.Items.Count == 0)
+            {
+                fCode.IsEnabled = true;
             }
 
+            try
+            {
+                if (!checkinput())
+                {
+                    return;
+                }
+                Drag row = tempData.SelectedItem as Drag;
+                int index = tempData.SelectedIndex;
+                tempData.Items.RemoveAt(index);
+                tempData.Items.Insert(index, new Drag() { sCode = row.sCode, dCode = row.dCode, code = row.code, dName = row.dName, fCode = int.Parse(fCode.Text), date_sendback = DateTime.Parse(date_sendback.Text).Date.ToString("yyyy-MM-dd"), Description = Description.Text });
+                
+            }
+            catch
+            {
+                MessageBox.Show("لطفا آیتم مورد نظر جهت تغییر را از جدول زیر انتخاب کنید");
+            }
+
+        }
+        private void AddTempToReal(object sender, RoutedEventArgs e)
+        {
+            foreach (Drag item in tempData.Items)
+            {
+                Helper.Insert("ارجاع دارو به شرکت", $"{item.dCode},{item.code},{item.sCode},'{item.date_sendback}','{item.Description}'");
+                Helper.Insert("تجمیع خرید دارو", $"{item.dCode},{item.code},{Helper.PersonalID}");
+                Helper.DeleteT("دارو موجود در انبار", $"'کد دارو'=={item.code}");
+                Helper.DeleteT("تاریخ انقضا داروی موجود در انبار", $"'کد دارو'=={item.code}");
+
+            }
+            MessageBox.Show("اطلاعات ذخیره شد");
+            fCode.Text="";
+            sendback.Content="";
+            dName.Text="";
+            Description.Text="";
+            tempData.Items.Clear();
+        }
+        private void tempData_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                Drag row = tempData.SelectedItem as Drag;
+                if (row == null)
+                {
+                    return;
+                }
+
+                fCode.Text = row.fCode.ToString();
+                Description.Text = row.Description.ToString();
+                date_sendback.Text = row.date_sendback.ToString();
+                dName.Text = row.dCode.ToString()+"-"+row.dName;
+            }
+            catch
+            {
+            }
         }
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
@@ -246,15 +320,15 @@ namespace PharmApp
         {
             try
             {
-                DataTable fdt = Helper.Multiply("داروی شرکت", "خرید دارو از شرکت", "'شماره فاکتور','نام شرکت'",$"'شماره فاکتور' == {fCode.Text} " );
-                sendback.Content=fdt.Rows[0]["نام شرکت"].ToString();
-                DataTable dt = Helper.Multiply_dis("خرید دارو از شرکت", "دارو موجود در انبار", "'نام دارو','کد یکتای دارو'", $"'شماره فاکتور'=={fCode.Text}");
+                DataTable fdt = Helper.Multiply("داروی شرکت", "خرید دارو از شرکت", "'شماره فاکتور','نام شرکت'", $"'شماره فاکتور' == {fCode.Text} and a.'کد یکتای دارو'==b.'کد یکتای دارو'");
+                sendback.Content = fdt.Rows[0]["نام شرکت"].ToString();
+                DataTable dt = Helper.Multiply("خرید دارو از شرکت", "دارو موجود در انبار", "'نام دارو','کد یکتای دارو'", $"'شماره فاکتور'=={fCode.Text} and a.'کد دارو'==b.'کد دارو'");
                 dNamelist.Clear();
                 dName.Items.Clear();
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
 
-                    dNamelist.Add(dt.Rows[i]["کد یکتای دارو"].ToString() + "-"+dt.Rows[i]["نام دارو"].ToString());
+                    dNamelist.Add(dt.Rows[i]["کد یکتای دارو"].ToString() + "-" + dt.Rows[i]["نام دارو"].ToString());
                     dName.Items.Add(dt.Rows[i]["کد یکتای دارو"].ToString() + "-" + dt.Rows[i]["نام دارو"].ToString());
 
                 }
@@ -264,6 +338,6 @@ namespace PharmApp
 
             }
         }
-        
+
     }
 }

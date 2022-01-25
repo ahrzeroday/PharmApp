@@ -52,7 +52,7 @@
             </ComboBox>
 
         </Border>
-        <DataGrid Name="tempData" Height="251" Width="750" FlowDirection="RightToLeft" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,300,0,0"/>
+        <DataGrid Name="tempData" Height="251" Width="750" FlowDirection="RightToLeft" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,300,0,0" MouseDoubleClick="tempData_MouseDoubleClick"/>
         <Label  Content=":نوع بیمار" Margin="0,86,44,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
         <Label  Content=":نوع بیمه" Margin="0,84,202,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
         <Label Content=":سن" Margin="381,126,384,444"/>
@@ -63,19 +63,19 @@
         <Label Content=":کد دارو" Margin="705,202,48,367"/>
         <Label Content=":مقدار" Margin="312,202,438,367"/>
         <Label Content="عدد" Margin="275,226,493,342"/>
-        <ComboBox Name="cName" Margin="288,87,256,0" FontFamily="Segoe UI" VerticalAlignment="Top"/>
+        <ComboBox Name="cName" FlowDirection="RightToLeft" Margin="288,87,256,0" FontFamily="Segoe UI" VerticalAlignment="Top"/>
         <TextBox Name="Name" Height="20" Margin="598,128,108,452" FlowDirection="RightToLeft" />
         <TextBox Name="ID" PreviewTextInput="OnlyNumAccept" MaxLength="10" Height="20" Margin="440,129,256,451" />
-        <TextBox Name="Age" Height="20" Margin="353,129,419,451" />
+        <TextBox Name="Age" MaxLength="3" Height="20" Margin="353,129,419,451" />
         <!-- مسئول تحویل  فردی است که باید  با اطلاعات خودش وارد سامانه شود-->
         <TextBox Name="Description" Height="20" Margin="288,172,109,408" FlowDirection="RightToLeft"/>
         <TextBox Name="dCode" PreviewTextInput="OnlyNumAccept" Height="20" Margin="684,232,48,348" />
-        <ComboBox Name="dName" PreviewKeyUp="autodetect" IsTextSearchEnabled="False" DropDownClosed="dName_DropDownClosed" Height="20" FlowDirection="RightToLeft"  Margin="459,232,132,348" IsEditable="True"/>
+        <ComboBox Name="dName" PreviewKeyUp="autodetect" IsTextSearchEnabled="False" DropDownClosed="dName_DropDownClosed" FlowDirection="RightToLeft"  Margin="459,230,132,345" IsEditable="True"/>
         <TextBox Name="Count" PreviewTextInput="OnlyNumAccept" Height="20" Margin="304,232,450,348" TextAlignment="Center" />
         <!--وقتی دکمه ثبت نهایی زده شد یک پنجره پیام برای انتقال به صندوق باز شود-->
-        <Button Content="ثبت نهایی" Margin="80,84,584,496" Click="addtemptoreal"/>
+        <Button Name="Add" Content="ثبت نهایی" Margin="80,84,584,496" Click="addtemptoreal"/>
         <Button Content="ثبت دارو" Margin="80,115,584,465" Click="AddTempData" />
-        <Button Content="حذف دارو" Margin="80,146,584,434"  />
+        <Button Content="حذف دارو" Margin="80,146,584,434" Click="DeleteOneTempdata" />
         <Button Content="ویرایش" Margin="80,176,584,404" Click="EditTempData" />
         <Button Content="حذف همه" Margin="80,206,584,374" Click="DeleteTempdata"/>
         <Button Content="انصراف"   Margin="80,237,584,343" Click="Cancel_Click"/>
